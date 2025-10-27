@@ -1,0 +1,44 @@
+{
+  "dataset_overview": {
+    "total_messages": 510,
+    "total_entities": 1900,
+    "avg_entities_per_message": 3.7254901960784315,
+    "entity_types": 9
+  },
+  "message_statistics": {
+    "avg_char_length": 138.67254901960786,
+    "median_char_length": 143.0,
+    "min_char_length": 33,
+    "max_char_length": 383,
+    "avg_word_count": 22.294117647058822,
+    "median_word_count": 23.0
+  },
+  "entity_statistics": {
+    "avg_entity_length": 8.234736842105264,
+    "median_entity_length": 7.0,
+    "min_entity_length": 1,
+    "max_entity_length": 84
+  },
+  "entity_distribution": {
+    "PHONE": 465,
+    "ACTION_REQUIRED": 438,
+    "AMOUNT": 315,
+    "BRAND": 189,
+    "DEADLINE": 164,
+    "URL": 133,
+    "ORDER_ID": 131,
+    "DATE": 62,
+    "EMAIL": 3
+  },
+  "entity_percentages": {
+    "PHONE": 24.47,
+    "ACTION_REQUIRED": 23.05,
+    "AMOUNT": 16.58,
+    "BRAND": 9.95,
+    "DEADLINE": 8.63,
+    "URL": 7.0,
+    "ORDER_ID": 6.89,
+    "DATE": 3.26,
+    "EMAIL": 0.16
+  }
+}

@@ -1,0 +1,131 @@
+<View><!--
+
+  <Style>Label Studio Configuration for SMS Phishing NER Annotation
+
+    .text-container {This configuration creates a named entity recognition (NER) interface
+
+      font-size: 16px;for annotating SMS messages with entity types.
+
+      line-height: 1.8;-->
+
+      padding: 20px;
+
+      background-color: #f9f9f9;<View>
+
+      border-radius: 8px;  <Style>
+
+      border: 1px solid #ddd;    .lsf-main-content.lsf-requesting .prompt::before { content: ' loading...'; }
+
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;    .text-container {
+
+    }      font-size: 16px;
+
+    .header-info {      line-height: 1.8;
+
+      background-color: #e3f2fd;      padding: 20px;
+
+      padding: 10px;      background-color: #f9f9f9;
+
+      margin-bottom: 15px;      border-radius: 8px;
+
+      border-radius: 5px;      border: 1px solid #ddd;
+
+      font-size: 14px;      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    }    }
+
+  </Style>    .header-info {
+
+      background-color: #e3f2fd;
+
+  <View className="header-info">      padding: 10px;
+
+    <Header value="SMS Message Annotation"/>      margin-bottom: 15px;
+
+    <Text name="message_id" value="Message ID: $message_id"/>      border-radius: 5px;
+
+    <Text name="label" value="Label: $label"/>      font-size: 14px;
+
+  </View>    }
+
+  </Style>
+
+  <View className="text-container">
+
+    <Labels name="entities" toName="text">  <!-- Display SMS metadata -->
+
+      <Label value="BRAND" background="#FF6B6B" hotkey="b"/>  <View className="header-info">
+
+      <Label value="PHONE" background="#4ECDC4" hotkey="p"/>    <Header value="SMS Message Annotation"/>
+
+      <Label value="URL" background="#45B7D1" hotkey="u"/>    <Text name="message_id" value="Message ID: $message_id"/>
+
+      <Label value="ORDER_ID" background="#FFA07A" hotkey="o"/>    <Text name="label" value="Label: $label"/>
+
+      <Label value="AMOUNT" background="#98D8C8" hotkey="m"/>  </View>
+
+      <Label value="DATE" background="#F7DC6F" hotkey="d"/>
+
+      <Label value="DEADLINE" background="#FF6B9D" hotkey="l"/>  <!-- Main text display for annotation -->
+
+      <Label value="ACTION_REQUIRED" background="#C44569" hotkey="a"/>  <View className="text-container">
+
+    </Labels>    <Labels name="entities" toName="text">
+
+          <!-- Identity & Contact -->
+
+    <Text name="text" value="$text"/>      <Label value="BRAND" background="#FF6B6B" hotkey="b"/>
+
+  </View>      <Label value="PHONE" background="#4ECDC4" hotkey="p"/>
+
+      <Label value="URL" background="#45B7D1" hotkey="u"/>
+
+  <View style="margin-top: 20px; padding: 15px; background-color: #fff3cd; border-radius: 5px;">      
+
+    <Header value="Annotation Guidelines"/>      <!-- Transaction -->
+
+    <Text value="Select minimal span only"/>      <Label value="ORDER_ID" background="#FFA07A" hotkey="o"/>
+
+    <Text value="Exclude trailing punctuation"/>      <Label value="AMOUNT" background="#98D8C8" hotkey="m"/>
+
+    <Text value="Annotate nested entities separately"/>      
+
+    <Text value="Hotkeys: B=Brand, P=Phone, U=URL, O=Order, M=Amount, D=Date, L=Deadline, A=Action"/>      <!-- Temporal -->
+
+  </View>      <Label value="DATE" background="#F7DC6F" hotkey="d"/>
+
+        <Label value="DEADLINE" background="#FF6B9D" hotkey="l"/>
+
+  <Header value="Notes" style="margin-top: 20px;"/>      
+
+  <TextArea name="notes" toName="text" placeholder="Document edge cases or questions" rows="2"/>      <!-- Action -->
+
+</View>      <Label value="ACTION_REQUIRED" background="#C44569" hotkey="a"/>
+
+    </Labels>
+    
+    <Text name="text" value="$text"/>
+  </View>
+
+  <!-- Instructions panel -->
+  <View style="margin-top: 20px; padding: 15px; background-color: #fff3cd; border-radius: 5px;">
+    <Header value="Annotation Guidelines (Quick Reference)"/>
+    <Text value="• Select minimal span - only the entity itself"/>
+    <Text value="• Exclude punctuation unless part of entity"/>
+    <Text value="• For nested entities, annotate both separately"/>
+    <Text value="• Hotkeys: B=Brand, P=Phone, U=URL, O=Order, M=Amount, D=Date, L=Deadline, A=Action"/>
+  </View>
+  
+  <!-- Optional: Rating for message suspiciousness -->
+  <Header value="Message Assessment (Optional)" style="margin-top: 20px;"/>
+  <Rating name="suspiciousness" toName="text" maxRating="5" icon="star" size="medium"/>
+  <Choices name="confidence" toName="text" choice="single" showInline="true">
+    <Choice value="High Confidence"/>
+    <Choice value="Medium Confidence"/>
+    <Choice value="Low Confidence - Unclear"/>
+  </Choices>
+  
+  <!-- Comments for edge cases -->
+  <Header value="Notes (for edge cases or questions)"/>
+  <TextArea name="notes" toName="text" placeholder="Any questions or edge cases? Document here..." rows="2"/>
+</View>
