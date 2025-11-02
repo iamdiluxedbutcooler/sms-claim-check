@@ -1,4 +1,4 @@
-# SMS Phishing Detection via Multi-Agent Claim Verification# SMS Phishing Detection via Multi-Agent Claim Verification
+# SMS Phishing Detection via Multi-Agent Claim Verification: Claim Detection Agent
 
 
 
