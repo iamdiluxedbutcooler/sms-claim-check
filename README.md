@@ -2,7 +2,7 @@
 
 
 
-## Project Goal## Overview
+## Project Goal
 
 
 
@@ -14,11 +14,7 @@ Key Innovation: Multi-agent claim verification architecture that extracts and ve
 
 
 
-## System Architecture## Architecture
-
-
-
-``````
+## System Architecture
 
 SMS Input SMS Input 
 
