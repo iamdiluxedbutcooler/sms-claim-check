@@ -406,18 +406,6 @@ python scripts/inference_ner.py --model models/ner/final_model --text "message"
 python inference.py --model experiments/entity_ner_roberta/final_model --text "message"
 ```
 
-## Performance Expectations
-
-| Model | Training Time | F1 Score (Est.) | Use Case |
-|-------|--------------|-----------------|----------|
-| Entity NER (DistilBERT) | 10-15 min | ~0.88 | Fast baseline |
-| Entity NER (RoBERTa) | 20-30 min | ~0.92 | Production |
-| Claim NER | 20-30 min | ~0.88 | Alternative |
-| Hybrid NER + LLM | 25-35 min | ~0.94 | Best performance |
-| Contrastive | 40-60 min | N/A | OOD robustness |
-
-Times on GPU (V100/A100). CPU is 5-10x slower.
-
 ## Troubleshooting
 
 ### Out of Memory
