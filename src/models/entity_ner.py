@@ -55,7 +55,7 @@ class EntityNERModel(BaseModel):
     def train(self, train_examples: List[Dict], val_examples: List[Dict], output_dir: Path):
         logger.info(f"Training {self.get_name()} with {len(train_examples)} examples")
         
-        self.tokenizer = AutoTokenizer.from_pretrained(self.model_name)
+        self.tokenizer = AutoTokenizer.from_pretrained(self.model_name, add_prefix_space=True)
         self.model = AutoModelForTokenClassification.from_pretrained(
             self.model_name,
             num_labels=len(self.label2id),
@@ -110,6 +110,17 @@ class EntityNERModel(BaseModel):
         return final_metrics
     
     def _prepare_dataset(self, examples: List[Dict]) -> Dataset:
+        dataset = Dataset.from_list(examples)
+        
+        tokenized_dataset = dataset.map(
+            self._tokenize_and_align_labels,
+            batched=True,
+            remove_columns=dataset.column_names
+        )
+        
+        return tokenized_dataset
+    
+    def _tokenize_and_align_labels(self, examples: Dict) -> Dict:
         tokenized_inputs = self.tokenizer(
             examples['tokens'],
             truncation=True,
@@ -219,9 +230,28 @@ class EntityNERModel(BaseModel):
         if current_entity:
             entities.append(current_entity)
         
-        return entities
+        return {'text': text, 'entities': entities}
     
     def save(self, output_dir: Path):
+        output_dir = Path(output_dir)
+        output_dir.mkdir(parents=True, exist_ok=True)
+        
+        logger.info(f"Saving model to {output_dir}")
+        
+        self.model.save_pretrained(output_dir)
+        self.tokenizer.save_pretrained(output_dir)
+        
+        with open(output_dir / "label_mapping.json", 'w') as f:
+            json.dump({
+                'label2id': self.label2id,
+                'id2label': self.id2label,
+                'entity_labels': self.entity_labels
+            }, f, indent=2)
+        
+        with open(output_dir / "config.json", 'w') as f:
+            json.dump(self.config, f, indent=2)
+    
+    def load(self, model_dir: Path):
         model_dir = Path(model_dir)
         
         logger.info(f"Loading model from {model_dir}")

@@ -1,8 +1,10 @@
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).parent))
+
 def check_dependencies():
-    print("Checking dependencies...")
+    print("\nChecking dependencies...")
     missing = []
     
     required = [
@@ -30,32 +32,35 @@ def check_dependencies():
         print("  pip install -r requirements_new.txt")
         return False
     
-    print("  All dependencies installed")
+    print("  All dependencies installed\n")
     return True
 
 
-sys.path.insert(0, str(Path(__file__).parent))
-
-def import_modules():
-    global AnnotationLoader, EntityNERPreprocessor, ClaimNERPreprocessor, ContrastivePreprocessor
-    global EntityNERModel, ClaimNERModel, HybridNERLLMModel, ContrastiveModel
+def test_imports():
+    print("Testing module imports...")
     
-    from src.data import AnnotationLoader, EntityNERPreprocessor, ClaimNERPreprocessor, ContrastivePreprocessor
-    from src.models import EntityNERModel, ClaimNERModel, HybridNERLLMModel, ContrastiveModel
-
-import sys
-from pathlib import Path
-
-def check_dependencies():
-    global AnnotationLoader, EntityNERPreprocessor, ClaimNERPreprocessor, ContrastivePreprocessor
-    global EntityNERModel, ClaimNERModel, HybridNERLLMModel, ContrastiveModel
+    try:
+        from src.data import AnnotationLoader, EntityNERPreprocessor, ClaimNERPreprocessor, ContrastivePreprocessor
+        print("  OK src.data imports")
+    except ImportError as e:
+        print(f"  FAILED src.data imports: {e}")
+        return False
     
-    from src.data import AnnotationLoader, EntityNERPreprocessor, ClaimNERPreprocessor, ContrastivePreprocessor
-    from src.models import EntityNERModel, ClaimNERModel, HybridNERLLMModel, ContrastiveModel
+    try:
+        from src.models import EntityNERModel, ClaimNERModel, HybridNERLLMModel, ContrastiveModel
+        print("  OK src.models imports")
+    except ImportError as e:
+        print(f"  FAILED src.models imports: {e}")
+        return False
+    
+    print("  All module imports successful\n")
+    return True
 
 
 def test_data_loading():
     print("Testing data loading...")
+    
+    from src.data import AnnotationLoader
     
     project_root = Path(__file__).parent
     annotations_file = project_root / "data" / "annotations" / "annotated_complete.json"
@@ -91,6 +96,21 @@ def test_preprocessors():
         ]
     )
     
+def test_preprocessors():
+    print("\nTesting preprocessors...")
+    
+    from src.data import EntityNERPreprocessor, ClaimNERPreprocessor, ContrastivePreprocessor, Message, Entity
+    
+    msg = Message(
+        id="test1",
+        text="Amazon order #12345 requires verification. Call 1-800-FAKE",
+        entities=[
+            Entity(0, 6, "BRAND", "Amazon"),
+            Entity(7, 19, "ORDER_ID", "order #12345"),
+            Entity(50, 60, "PHONE", "1-800-FAKE"),
+        ]
+    )
+    
     entity_labels = ["O", "B-BRAND", "I-BRAND", "B-PHONE", "I-PHONE", "B-ORDER_ID", "I-ORDER_ID"]
     preprocessor = EntityNERPreprocessor(entity_labels)
     examples = preprocessor.prepare_examples([msg])
@@ -110,6 +130,8 @@ def test_preprocessors():
 def test_model_initialization():
     print("\nTesting model initialization...")
     
+    from src.models import EntityNERModel, ClaimNERModel, HybridNERLLMModel, ContrastiveModel
+    
     config = {
         'model_name': 'distilbert-base-uncased',
         'max_length': 128,
@@ -127,6 +149,7 @@ def test_model_initialization():
     config_hybrid['ner_config'] = config.copy()
     config_hybrid['use_local_llm'] = True
     config_hybrid['llm_provider'] = 'flan-t5'
+    config_hybrid['llm_model'] = 'google/flan-t5-small'
     model = HybridNERLLMModel(config_hybrid)
     print(f"  PASS: HybridNERLLMModel initialized")
     
@@ -134,37 +157,6 @@ def test_model_initialization():
     config_contrastive['embedding_dim'] = 256
     model = ContrastiveModel(config_contrastive)
     print(f"  PASS: ContrastiveModel initialized")
-    
-    return True
-
-
-def test_preprocessors():
-    print("\nTesting model initialization...")
-    
-    config = {
-        'model_name': 'distilbert-base-uncased',
-        'max_length': 128,
-        'num_epochs': 1,
-        'batch_size': 8,
-    }
-    
-    model = EntityNERModel(config)
-    print(f"   EntityNERModel initialized")
-    
-    model = ClaimNERModel(config)
-    print(f"   ClaimNERModel initialized")
-    
-    config_hybrid = config.copy()
-    config_hybrid['ner_config'] = config.copy()
-    config_hybrid['use_local_llm'] = True
-    config_hybrid['llm_provider'] = 'flan-t5'
-    model = HybridNERLLMModel(config_hybrid)
-    print(f"   HybridNERLLMModel initialized")
-    
-    config_contrastive = config.copy()
-    config_contrastive['embedding_dim'] = 256
-    model = ContrastiveModel(config_contrastive)
-    print(f"   ContrastiveModel initialized")
     
     return True
 
@@ -181,11 +173,13 @@ def main():
         print("="*70)
         return
     
-    print()
+    if not test_imports():
+        print("\n" + "="*70)
+        print("Module imports failed")
+        print("="*70)
+        return
     
     try:
-        import_modules()
-        
         data_ok = test_data_loading()
         prep_ok = test_preprocessors()
         model_ok = test_model_initialization()
@@ -194,6 +188,7 @@ def main():
         print("Test Summary")
         print("="*70)
         print(f"Dependencies:     PASS")
+        print(f"Module Imports:   PASS")
         print(f"Data Loading:     {'PASS' if data_ok else 'SKIP (no annotations)'}")
         print(f"Preprocessors:    {'PASS' if prep_ok else 'FAIL'}")
         print(f"Models:           {'PASS' if model_ok else 'FAIL'}")

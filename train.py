@@ -14,7 +14,7 @@ from src.models import EntityNERModel, ClaimNERModel, HybridNERLLMModel, Contras
 
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    format='%(message)s',
     handlers=[
         logging.StreamHandler(),
     ]
@@ -27,7 +27,7 @@ class ModelTrainer:
     def __init__(self, config_path: Path):
         self.config_path = Path(config_path)
         self.config = self._load_config()
-        self.project_root = Path(__file__).parent.parent
+        self.project_root = Path(__file__).parent
         
         self.output_dir = self.project_root / self.config['output_config']['output_dir']
         self.output_dir.mkdir(parents=True, exist_ok=True)
@@ -46,6 +46,11 @@ class ModelTrainer:
         logger.info(f"Output: {self.output_dir}")
     
     def _load_config(self) -> dict:
+        with open(self.config_path, 'r') as f:
+            config = yaml.safe_load(f)
+        return config
+    
+    def load_data(self):
         logger.info("\n" + "="*70)
         logger.info("Loading Data")
         logger.info("="*70)
@@ -53,9 +58,12 @@ class ModelTrainer:
         data_config = self.config['data_config']
         annotations_file = self.project_root / data_config['annotations_file']
         
+        logger.info(f"Loading annotations from: {annotations_file}")
         loader = AnnotationLoader(annotations_file)
         messages = loader.load()
+        logger.info(f"Loaded {len(messages)} messages")
         
+        logger.info("Splitting data...")
         train_msgs, val_msgs, test_msgs = loader.split_data(
             messages,
             train_ratio=data_config['train_ratio'],
@@ -64,7 +72,12 @@ class ModelTrainer:
             seed=data_config['seed']
         )
         
+        logger.info(f"  Train: {len(train_msgs)} messages")
+        logger.info(f"  Val: {len(val_msgs)} messages")
+        logger.info(f"  Test: {len(test_msgs)} messages")
+        
         approach = self.config['approach']
+        logger.info(f"\nPreprocessing data for approach: {approach}")
         
         if approach == 'entity_ner':
             preprocessor = EntityNERPreprocessor(
@@ -97,7 +110,7 @@ class ModelTrainer:
         else:
             raise ValueError(f"Unknown approach: {approach}")
         
-        logger.info(f"\nData preprocessed for approach: {approach}")
+        logger.info(f"Preprocessing complete:")
         logger.info(f"  Train examples: {len(train_examples)}")
         logger.info(f"  Val examples: {len(val_examples)}")
         logger.info(f"  Test examples: {len(test_examples)}")
@@ -114,6 +127,32 @@ class ModelTrainer:
         return train_examples, val_examples, test_examples
     
     def create_model(self):
+        logger.info("\n" + "="*70)
+        logger.info("Creating Model")
+        logger.info("="*70)
+        
+        approach = self.config['approach']
+        model_config = self.config['model_config']
+        
+        logger.info(f"Approach: {approach}")
+        logger.info(f"Model config: {model_config.get('model_name', 'default')}")
+        
+        if approach == 'entity_ner':
+            model = EntityNERModel(model_config)
+        elif approach == 'claim_ner':
+            model = ClaimNERModel(model_config)
+        elif approach == 'hybrid_llm':
+            model = HybridNERLLMModel(model_config)
+        elif approach == 'contrastive':
+            model = ContrastiveModel(model_config)
+        else:
+            raise ValueError(f"Unknown approach: {approach}")
+        
+        logger.info(f"Model created: {model.get_name()}")
+        return model
+    
+    def train(self):
+        logger.info("\nStarting training pipeline...")
         
         train_examples, val_examples, test_examples = self.load_data()
         
