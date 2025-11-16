@@ -117,26 +117,62 @@ class AnnotationLoader:
     ) -> Tuple[List[Message], List[Message], List[Message]]:
         from sklearn.model_selection import train_test_split
         
-        assert abs(train_ratio + val_ratio + test_ratio - 1.0) < 1e-6
+        # Check if we should use original dataset splits
+        split_mapping_path = Path(__file__).parent.parent.parent / 'data' / 'processed' / 'annotation_split_mapping.json'
         
-        train_msgs, temp_msgs = train_test_split(
-            messages,
-            test_size=(1 - train_ratio),
-            random_state=seed,
-            shuffle=True
-        )
+        if split_mapping_path.exists():
+            logger.info("Using original dataset train/test split")
+            with open(split_mapping_path, 'r') as f:
+                split_mapping = json.load(f)
+            
+            # Determine which split to use based on annotation type
+            annotation_type = 'entity_annotations'  # default
+            if any('claim' in msg.entities[0].label.lower() for msg in messages if msg.entities):
+                annotation_type = 'claim_annotations'
+            
+            train_ids = set(str(x) for x in split_mapping[annotation_type]['train_ids'])
+            test_ids = set(str(x) for x in split_mapping[annotation_type]['test_ids'])
+            
+            train_msgs = [msg for msg in messages if msg.id in train_ids]
+            test_msgs = [msg for msg in messages if msg.id in test_ids]
+            
+            # Split train into train + val
+            val_size = val_ratio / (train_ratio + val_ratio)
+            train_msgs, val_msgs = train_test_split(
+                train_msgs,
+                test_size=val_size,
+                random_state=seed,
+                shuffle=True
+            )
+            
+            logger.info(f"Data split (respecting original):")
+            logger.info(f"  Train: {len(train_msgs)} messages")
+            logger.info(f"  Val:   {len(val_msgs)} messages")
+            logger.info(f"  Test:  {len(test_msgs)} messages (from original test set)")
         
-        relative_test_ratio = test_ratio / (val_ratio + test_ratio)
-        val_msgs, test_msgs = train_test_split(
-            temp_msgs,
-            test_size=relative_test_ratio,
-            random_state=seed,
-            shuffle=True
-        )
-        
-        logger.info(f"Data split:")
-        logger.info(f"  Train: {len(train_msgs)} messages ({train_ratio*100:.1f}%)")
-        logger.info(f"  Val:   {len(val_msgs)} messages ({val_ratio*100:.1f}%)")
-        logger.info(f"  Test:  {len(test_msgs)} messages ({test_ratio*100:.1f}%)")
+        else:
+            # Fallback to random split
+            logger.warning("Original split mapping not found, using random split")
+            assert abs(train_ratio + val_ratio + test_ratio - 1.0) < 1e-6
+            
+            train_msgs, temp_msgs = train_test_split(
+                messages,
+                test_size=(1 - train_ratio),
+                random_state=seed,
+                shuffle=True
+            )
+            
+            relative_test_ratio = test_ratio / (val_ratio + test_ratio)
+            val_msgs, test_msgs = train_test_split(
+                temp_msgs,
+                test_size=relative_test_ratio,
+                random_state=seed,
+                shuffle=True
+            )
+            
+            logger.info(f"Data split:")
+            logger.info(f"  Train: {len(train_msgs)} messages ({train_ratio*100:.1f}%)")
+            logger.info(f"  Val:   {len(val_msgs)} messages ({val_ratio*100:.1f}%)")
+            logger.info(f"  Test:  {len(test_msgs)} messages ({test_ratio*100:.1f}%)")
         
         return train_msgs, val_msgs, test_msgs
