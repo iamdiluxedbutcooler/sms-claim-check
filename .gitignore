@@ -37,9 +37,12 @@ wheels/
 data/raw/*.csv
 data/raw/*.txt
 data/raw/*.json
-data/annotations/*.json
 data/processed/*.json
 data/processed/*.conll
+
+# Keep annotation files for training
+!data/annotations/entity_annotations.json
+!data/annotations/claim_annotations.json
 
 # Keep directory structure
 !data/.gitkeep

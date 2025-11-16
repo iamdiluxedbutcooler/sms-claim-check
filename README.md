@@ -1,211 +1,96 @@
-# SMS Phishing Detection via Multi-Agent Claim Verification: Claim Detection Agent
+# SMS Claim Extraction for Phishing Detection
 
+A research project comparing **4 approaches** to extract atomic, verifiable claims from phishing SMS messages. This is the first stage of a multi-agent claim verification system for phishing detection.
 
+## Project Overview
 
-## Project Goal
+**Goal:** Extract structured, verifiable claims from SMS messages that can be fact-checked against authoritative sources.
 
+**Approach:** Compare 4 different methods for claim extraction:
+1. **Entity-First NER** - Extract entities then parse to claims
+2. **Claim-Phrase NER** - Directly extract claim phrases
+3. **Hybrid NER + LLM** - Combine NER with GPT-4o for structured output
+4. **Contrastive Learning** - Learn claim embeddings for OOD robustness
 
+## Quick Start
 
-Develop a phishing SMS detection system that achieves approximately 99% accuracy on known attacks AND robust performance on zero-day/OOD (out-of-distribution) attacks.This project implements a phishing SMS detection system designed to achieve high accuracy on known attacks while maintaining robust performance on zero-day and out-of-distribution attacks.
+\`\`\`bash
+# Install dependencies
+pip install -r requirements.txt
 
+# Setup environment
+cp .env.example .env  # Add your OPENAI_API_KEY
 
+# View annotation results (already completed!)
+cat ANNOTATION_RESULTS.md
 
-Key Innovation: Multi-agent claim verification architecture that extracts and verifies factual claims against external sources, similar to how humans detect phishing.The system employs a multi-agent claim verification architecture that extracts and verifies factual claims against external knowledge sources, rather than relying solely on pattern matching approaches.
-
-## Project Structure
-
-```
-sms-claim-check/
-├── src/
-│   ├── data/
-│   │   ├── loader.py
-│   │   └── preprocessor.py
-│   ├── models/
-│   │   ├── base.py
-│   │   ├── entity_ner.py
-│   │   ├── claim_ner.py
-│   │   ├── hybrid_llm.py
-│   │   └── contrastive.py
-│   └── utils/
-├── configs/
-│   ├── entity_ner.yaml
-│   ├── claim_ner.yaml
-│   ├── hybrid_llm.yaml
-│   └── contrastive.yaml
-├── data/
-│   ├── annotations/
-│   ├── processed/
-│   └── raw/
-├── experiments/
-├── scripts/
-├── train.py
-├── inference.py
-├── test_setup.py
-├── run_experiment.sh
-└── run_all_experiments.sh
-```
-
-## Configuration
-
-All models are configured via YAML files in `configs/`:
-
-```yaml
-approach: "entity_ner"
-name: "Entity-First NER (RoBERTa)"
-
-model_config:
-  model_name: "roberta-base"
-  max_length: 128
-
-training_config:
-  num_epochs: 10
-  batch_size: 16
-  learning_rate: 2e-5
-
-data_config:
-  annotations_file: "data/annotations/annotated_complete.json"
-  train_ratio: 0.67
-  val_ratio: 0.17
-  test_ratio: 0.16
-
-output_config:
-  output_dir: "experiments/entity_ner_roberta"
-```
-
-## Entity Schema
-
-Eight entity types for annotation:
-
-1. BRAND: Company or organization names
-2. PHONE: Phone numbers in any format
-3. URL: Web links, including shortened URLs
-4. ORDER_ID: Order, tracking, or invoice identifiers
-5. AMOUNT: Monetary amounts with or without currency symbols
-6. DATE: Temporal references
-7. DEADLINE: Time pressure indicators
-8. ACTION_REQUIRED: Imperative action verbs
-
-## Label Studio Setup
-
-### Create Project
-1. Start Label Studio: `label-studio start`
-2. Access at http://localhost:8080
-3. Create project: "SMS Phishing Annotation"
-
-### Import Data
-1. Settings > Import
-2. Upload `data/annotations/preannotated.json`
-3. Check "Treat CSV/TSV as List of tasks"
-
-### Configure Interface
-Settings > Labeling Interface > Code:
-
-```xml
-<View>
-  <Header value="Annotate SMS Entities"/>
-  <Text name="text" value="$text"/>
-  
-  <Labels name="label" toName="text">
-    <Label value="BRAND" background="#FF6B6B" hotkey="b"/>
-    <Label value="PHONE" background="#4ECDC4" hotkey="p"/>
-    <Label value="URL" background="#45B7D1" hotkey="u"/>
-    <Label value="ORDER_ID" background="#96CEB4" hotkey="o"/>
-    <Label value="AMOUNT" background="#FFEAA7" hotkey="m"/>
-    <Label value="DATE" background="#DFE6E9" hotkey="d"/>
-    <Label value="DEADLINE" background="#FF7675" hotkey="l"/>
-    <Label value="ACTION_REQUIRED" background="#FD79A8" hotkey="a"/>
-  </Labels>
-</View>
-```
-
-### Keyboard Shortcuts
-- b: BRAND, p: PHONE, u: URL, o: ORDER_ID
-- m: AMOUNT, d: DATE, l: DEADLINE, a: ACTION_REQUIRED
-- Ctrl+Enter: Submit, Ctrl+Space: Show predictions
-
-### Export
-Settings > Export > JSON format
-
-## Adding New Models
-
-1. Create model class in `src/models/new_model.py` inheriting from `BaseModel`
-2. Implement required methods: `train()`, `evaluate()`, `predict()`, `save()`, `load()`
-3. Create config file in `configs/new_model.yaml`
-4. Import in `train.py`
-
-## Cluster Training
-
-For SLURM clusters:
-
-```bash
-#!/bin/bash
-#SBATCH --job-name=sms-phishing
-#SBATCH --gres=gpu:1
-#SBATCH --time=12:00:00
-#SBATCH --mem=32G
-
-source venv/bin/activate
+# Train models
 python train.py --config configs/entity_ner.yaml
-```
+python train.py --config configs/claim_ner.yaml
 
-## Model Outputs
+# Compare results
+python scripts/compare_models.py
+\`\`\`
 
-Each experiment creates:
-```
-experiments/<experiment_name>/
-├── final_model/
-├── results.json
-├── data_splits.json
-└── training_*.log
-```
+## Current Status
 
-## Migration from Old Code
+[OK] **Annotations Complete** - Both entity and claim-based annotations done via GPT-4o
+- Entity annotations: 638 messages, 3,141 entities, 100% success
+- Claim annotations: 638 messages, 1,833 claims, 100% success
+- See \`ANNOTATION_RESULTS.md\` for details
 
-### Old Training
-```bash
-python scripts/train_ner.py --model distilbert-base-uncased --epochs 10
-```
+[OK] **Code Restructured** - Clear separation of 4 approaches with proper configs
 
-### New Training
-```bash
-./run_experiment.sh entity_ner
-python train.py --config configs/entity_ner.yaml
-```
+[WAIT] **Next:** Train models and compare performance
 
-### Old Inference
-```bash
-python scripts/inference_ner.py --model models/ner/final_model --text "message"
-```
+## The 4 Approaches
 
-### New Inference
-```bash
-python inference.py --model experiments/entity_ner_roberta/final_model --text "message"
-```
+### 1. Entity-First NER
+Extract concrete entities (BRAND, PHONE, URL, etc.) then parse to structured claims.
+- **Config:** \`configs/entity_ner.yaml\`
+- **Data:** \`data/annotations/entity_annotations.json\`
 
-## Troubleshooting
+### 2. Claim-Phrase NER
+Directly extract semantic claim phrases (IDENTITY_CLAIM, FINANCIAL_CLAIM, etc.).
+- **Config:** \`configs/claim_ner.yaml\`
+- **Data:** \`data/annotations/claim_annotations.json\`
 
-### Out of Memory
-- Reduce `batch_size` in config
-- Use smaller model: `distilbert-base-uncased`
+### 3a. Hybrid Entity-NER + LLM
+Extract entities with NER, then use GPT-4o-mini to structure into verifiable claims.
+- **Config:** \`configs/hybrid_llm.yaml\`
+- **Requires:** Trained entity NER model + OpenAI API
 
-### Slow Training
-- Reduce `num_epochs`
-- Use smaller model
+### 3b. Hybrid Claim-NER + LLM
+Extract claim phrases with NER, then use GPT-4o-mini to create verification queries.
+- **Config:** \`configs/hybrid_claim_llm.yaml\`
+- **Requires:** Trained claim NER model + OpenAI API
 
-### Import Errors
-```bash
-pip install -r requirements_new.txt
-```
+### 4. Contrastive Learning
+Learn claim embeddings via supervised contrastive loss for OOD generalization.
+- **Config:** \`configs/contrastive.yaml\`
+- **Method:** SupCon loss with RoBERTa encoder
 
-## Next Steps
+## Documentation
 
-1. Train baseline models
-2. Implement claim parsing agent
-3. Build verification agent with external APIs
-4. Connect all agents for end-to-end pipeline
-5. Evaluate on zero-day attacks
-6. Compare against traditional phishing detectors
+- **[ANNOTATION_RESULTS.md](ANNOTATION_RESULTS.md)** - Annotation quality and statistics
+- **[docs/RESEARCH_PIPELINE.md](docs/RESEARCH_PIPELINE.md)** - Detailed research approach
+- **[docs/QUICKSTART.md](docs/QUICKSTART.md)** - Step-by-step tutorial
 
-## License
+## Key Features
 
-MIT License
+- **Both entity & claim annotations** using GPT-4o batch API (100% success rate)
+- **Clean architecture** with separate configs for each approach
+- **Comprehensive EDA** with visualization and quality reports
+- **Hybrid LLM prompts** for structured claim verification
+- **No emojis** in code (removed for professionalism)
+
+## Requirements
+
+\`\`\`
+Python 3.8+
+PyTorch 2.0+
+Transformers 4.30+
+OpenAI API (for annotations and hybrid approaches)
+\`\`\`
+
+See \`requirements.txt\` for full list.
