@@ -25,7 +25,8 @@ wheels/
 
 # Jupyter Notebook
 .ipynb_checkpoints
-*.ipynb
+# Allow colab training notebook
+!colab_training.ipynb
 
 # PyCharm
 .idea/
