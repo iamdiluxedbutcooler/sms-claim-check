@@ -1,0 +1,45 @@
+# Configuration for Approach 3b: Hybrid Claim-NER + LLM Pipeline
+approach: "hybrid_claim_llm"
+name: "Hybrid Claim-NER + LLM"
+description: "Extract claim phrases with NER, then use LLM to structure into verifiable queries"
+
+model_config:
+  # NER component config (uses claim-based NER model)
+  ner_type: "claim"  # entity or claim
+  ner_model_path: "experiments/approach2_claim_ner/best_model"
+  ner_config:
+    model_name: "roberta-base"
+    max_length: 128
+    claim_labels:
+      - "O"
+      - "B-IDENTITY_CLAIM"
+      - "I-IDENTITY_CLAIM"
+      - "B-DELIVERY_CLAIM"
+      - "I-DELIVERY_CLAIM"
+      - "B-FINANCIAL_CLAIM"
+      - "I-FINANCIAL_CLAIM"
+      - "B-ACCOUNT_CLAIM"
+      - "I-ACCOUNT_CLAIM"
+      - "B-URGENCY_CLAIM"
+      - "I-URGENCY_CLAIM"
+      - "B-ACTION_CLAIM"
+      - "I-ACTION_CLAIM"
+  
+  # LLM component config
+  llm_provider: "openai"
+  llm_model: "gpt-4o-mini"
+  use_local_llm: false
+  use_batch_api: true
+  prompt_template: "claim_to_structured"  # defined in src/models/hybrid_prompts.py
+
+data_config:
+  annotations_file: "data/annotations/claim_annotations.json"
+  train_ratio: 0.67
+  val_ratio: 0.17
+  test_ratio: 0.16
+  seed: 42
+
+output_config:
+  experiment_name: "hybrid_claim_llm"
+  output_dir: "experiments/approach3b_hybrid_claim_llm"
+  save_best_only: true

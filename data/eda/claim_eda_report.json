@@ -1,0 +1,124 @@
+{
+  "annotation_type": "claim",
+  "file": "data/annotations/claim_annotations.json",
+  "basic_statistics": {
+    "total_messages": 634,
+    "total_annotations": 1833,
+    "avg_annotations_per_message": 2.891167192429022,
+    "messages_with_no_annotations": 4,
+    "avg_annotation_length": 31.981451172940535,
+    "median_annotation_length": 29.0,
+    "max_annotation_length": 98,
+    "min_annotation_length": 3,
+    "min_annotations_per_message": 1,
+    "max_annotations_per_message": 6,
+    "std_annotations_per_message": 0.9266039305120818
+  },
+  "label_distribution": {
+    "counts": {
+      "ACTION_CLAIM": 704,
+      "FINANCIAL_CLAIM": 631,
+      "IDENTITY_CLAIM": 189,
+      "URGENCY_CLAIM": 173,
+      "ACCOUNT_CLAIM": 94,
+      "DELIVERY_CLAIM": 42
+    },
+    "percentages": {
+      "ACTION_CLAIM": 38.40698308783415,
+      "FINANCIAL_CLAIM": 34.42444080741953,
+      "IDENTITY_CLAIM": 10.310965630114566,
+      "URGENCY_CLAIM": 9.438079650845609,
+      "ACCOUNT_CLAIM": 5.128205128205128,
+      "DELIVERY_CLAIM": 2.2913256955810146
+    }
+  },
+  "overlap_analysis": {
+    "total_overlaps": 12,
+    "overlap_rate": 0.006546644844517185
+  },
+  "message_length_analysis": {
+    "avg_message_length": 139.99211356466876,
+    "median_message_length": 146.0,
+    "correlation_length_annotations": 0.39790233748545
+  },
+  "quality_checks": {
+    "trailing_punctuation": 11,
+    "leading_whitespace": 0,
+    "trailing_whitespace": 0,
+    "very_short_annotations": 0,
+    "very_long_annotations": 0,
+    "empty_annotations": 0
+  },
+  "label_cooccurrence": [
+    {
+      "label1": "ACTION_CLAIM",
+      "label2": "FINANCIAL_CLAIM",
+      "count": 685
+    },
+    {
+      "label1": "ACTION_CLAIM",
+      "label2": "IDENTITY_CLAIM",
+      "count": 189
+    },
+    {
+      "label1": "ACTION_CLAIM",
+      "label2": "URGENCY_CLAIM",
+      "count": 167
+    },
+    {
+      "label1": "FINANCIAL_CLAIM",
+      "label2": "URGENCY_CLAIM",
+      "count": 149
+    },
+    {
+      "label1": "FINANCIAL_CLAIM",
+      "label2": "IDENTITY_CLAIM",
+      "count": 147
+    },
+    {
+      "label1": "ACCOUNT_CLAIM",
+      "label2": "ACTION_CLAIM",
+      "count": 90
+    },
+    {
+      "label1": "IDENTITY_CLAIM",
+      "label2": "URGENCY_CLAIM",
+      "count": 50
+    },
+    {
+      "label1": "ACTION_CLAIM",
+      "label2": "DELIVERY_CLAIM",
+      "count": 47
+    },
+    {
+      "label1": "DELIVERY_CLAIM",
+      "label2": "FINANCIAL_CLAIM",
+      "count": 47
+    },
+    {
+      "label1": "ACCOUNT_CLAIM",
+      "label2": "URGENCY_CLAIM",
+      "count": 35
+    },
+    {
+      "label1": "ACCOUNT_CLAIM",
+      "label2": "FINANCIAL_CLAIM",
+      "count": 32
+    },
+    {
+      "label1": "ACCOUNT_CLAIM",
+      "label2": "IDENTITY_CLAIM",
+      "count": 6
+    },
+    {
+      "label1": "DELIVERY_CLAIM",
+      "label2": "IDENTITY_CLAIM",
+      "count": 4
+    },
+    {
+      "label1": "DELIVERY_CLAIM",
+      "label2": "URGENCY_CLAIM",
+      "count": 1
+    }
+  ]
+}

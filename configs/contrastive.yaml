@@ -1,27 +1,40 @@
 # Configuration for Approach 4: Contrastive Learning
 approach: "contrastive"
-name: "Contrastive Learning for OOD Robustness"
+name: "Contrastive Learning (SupCon)"
+description: "Learn claim embeddings via contrastive learning for OOD robustness"
 
 model_config:
   model_name: "roberta-base"
   embedding_dim: 256
+  projection_dim: 128
   max_length: 128
   temperature: 0.07  # Contrastive loss temperature
+  loss_type: "supcon"  # Supervised Contrastive Loss
+  pooling: "mean"  # mean, max, or cls
 
 training_config:
   num_epochs: 20
   batch_size: 32
   learning_rate: 1e-4
+  warmup_steps: 1000
+  weight_decay: 0.01
   seed: 42
+  augmentation:
+    enabled: true
+    methods: ["backtranslation", "synonym_replacement", "random_deletion"]
 
 data_config:
-  annotations_file: "data/annotations/annotated_complete.json"
+  raw_data: "data/raw/mendeley.csv"
   train_ratio: 0.67
   val_ratio: 0.17
   test_ratio: 0.16
   seed: 42
+  # Contrastive learning benefits from both entity and claim annotations
+  entity_annotations: "data/annotations/entity_annotations.json"
+  claim_annotations: "data/annotations/claim_annotations.json"
 
 output_config:
-  experiment_name: "contrastive_roberta"
-  output_dir: "experiments/contrastive_roberta"
+  experiment_name: "contrastive_supcon"
+  output_dir: "experiments/approach4_contrastive"
   save_best_only: true
+  save_embeddings: true  # Save learned embeddings for analysis

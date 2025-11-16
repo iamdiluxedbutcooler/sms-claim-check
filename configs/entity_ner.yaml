@@ -1,6 +1,7 @@
 # Configuration for Approach 1: Entity-First NER Pipeline
 approach: "entity_ner"
 name: "Entity-First NER (RoBERTa)"
+description: "Extract concrete entities then parse to structured claims"
 
 model_config:
   model_name: "roberta-base"  # or "distilbert-base-uncased", "bert-base-uncased"
@@ -33,7 +34,7 @@ training_config:
   seed: 42
 
 data_config:
-  annotations_file: "data/annotations/annotated_complete.json"
+  annotations_file: "data/annotations/entity_annotations.json"
   train_ratio: 0.67
   val_ratio: 0.17
   test_ratio: 0.16
@@ -41,5 +42,5 @@ data_config:
 
 output_config:
   experiment_name: "entity_ner_roberta"
-  output_dir: "experiments/entity_ner_roberta"
+  output_dir: "experiments/approach1_entity_ner"
   save_best_only: true
