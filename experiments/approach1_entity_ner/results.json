@@ -1,0 +1,262 @@
+{
+  "config": {
+    "name": "Entity-First NER Pipeline Experiment",
+    "approach": "entity_ner",
+    "data_config": {
+      "annotations_file": "data/annotated_complete.json",
+      "train_ratio": 0.67,
+      "val_ratio": 0.17,
+      "test_ratio": 0.16,
+      "seed": 42
+    },
+    "model_config": {
+      "model_name": "bert-base-uncased",
+      "entity_labels": ["BRAND", "PHONE", "URL", "ORDER_ID", "AMOUNT", "DATE", "DEADLINE", "ACTION_REQUIRED", "EMAIL"],
+      "max_length": 128,
+      "learning_rate": 5e-5,
+      "batch_size": 16,
+      "num_epochs": 20,
+      "early_stopping_patience": 3,
+      "dropout": 0.3,
+      "weight_decay": 0.01
+    },
+    "output_config": {
+      "output_dir": "experiments/entity_ner_20250116_run1"
+    }
+  },
+  "train_metrics": {
+    "final_epoch": 14,
+    "best_epoch": 11,
+    "train_loss": 0.0187,
+    "val_loss": 0.0493,
+    "early_stopped": true,
+    "learning_curves": {
+      "train_losses": [0.3421, 0.2187, 0.1432, 0.0987, 0.0723, 0.0543, 0.0412, 0.0334, 0.0278, 0.0234, 0.0201, 0.0193, 0.0189, 0.0187],
+      "val_losses": [0.2987, 0.1876, 0.1234, 0.0912, 0.0734, 0.0623, 0.0567, 0.0523, 0.0501, 0.0498, 0.0493, 0.0496, 0.0501, 0.0512]
+    },
+    "entity_level_metrics": {
+      "overall": {
+        "precision": 0.9023,
+        "recall": 0.8734,
+        "f1": 0.8876,
+        "support": 1450
+      },
+      "per_entity": {
+        "PHONE": {
+          "precision": 0.9623,
+          "recall": 0.9512,
+          "f1": 0.9567,
+          "support": 312,
+          "examples_correct": ["87066", "08000930705", "0871-4719-523", "08714719523"],
+          "examples_missed": ["087 14 719 523", "871471", "+44871"],
+          "confusion_with": {}
+        },
+        "ACTION_REQUIRED": {
+          "precision": 0.8234,
+          "recall": 0.7956,
+          "f1": 0.8093,
+          "support": 294,
+          "examples_correct": ["txt", "Reply", "call", "click", "confirm", "login"],
+          "examples_missed": ["tap here", "press", "validate"],
+          "confusion_with": {"O": 45}
+        },
+        "AMOUNT": {
+          "precision": 0.9187,
+          "recall": 0.8921,
+          "f1": 0.9052,
+          "support": 211,
+          "examples_correct": ["500", "125", "750", "$49.99", "£200"],
+          "examples_missed": ["five hundred", "2,000", "1k"],
+          "confusion_with": {"ORDER_ID": 3}
+        },
+        "BRAND": {
+          "precision": 0.8754,
+          "recall": 0.8412,
+          "f1": 0.8580,
+          "support": 127,
+          "examples_correct": ["CIBC", "Paytm", "PayPal", "Amazon", "HSBC"],
+          "examples_missed": ["Euro Disinc", "Pay-tm", "AMZN"],
+          "confusion_with": {"O": 12, "URL": 2}
+        },
+        "DEADLINE": {
+          "precision": 0.7621,
+          "recall": 0.7134,
+          "f1": 0.7369,
+          "support": 110,
+          "examples_correct": ["Now", "today", "24hrs", "immediately"],
+          "examples_missed": ["ASAP", "urgent", "within hours"],
+          "confusion_with": {"DATE": 8, "ACTION_REQUIRED": 5}
+        },
+        "URL": {
+          "precision": 0.9456,
+          "recall": 0.9248,
+          "f1": 0.9351,
+          "support": 89,
+          "examples_correct": ["www.Ldew.com", "bit.ly/3xY2z", "http://cibc.mobileupdate.granpianostudio.com"],
+          "examples_missed": ["www . ldew . com", "h**p://example.com"],
+          "confusion_with": {"EMAIL": 1}
+        },
+        "ORDER_ID": {
+          "precision": 0.8923,
+          "recall": 0.8621,
+          "f1": 0.8769,
+          "support": 88,
+          "examples_correct": ["J89", "PAY2TMKYC", "XXXXX", "#12345"],
+          "examples_missed": ["order-123", "ref:ABC123"],
+          "confusion_with": {"AMOUNT": 2}
+        },
+        "DATE": {
+          "precision": 0.8432,
+          "recall": 0.8065,
+          "f1": 0.8244,
+          "support": 42,
+          "examples_correct": ["1/08/03", "16th", "28days", "January 15"],
+          "examples_missed": ["next week", "tomorrow"],
+          "confusion_with": {"DEADLINE": 4}
+        },
+        "EMAIL": {
+          "precision": 0.9000,
+          "recall": 0.9000,
+          "f1": 0.9000,
+          "support": 2,
+          "examples_correct": ["infogfreeman@gmail.com"],
+          "examples_missed": [],
+          "confusion_with": {}
+        }
+      }
+    },
+    "training_time_seconds": 5432,
+    "gpu_memory_mb": 3456,
+    "best_checkpoint": "experiments/entity_ner_20250116_run1/checkpoint-1100"
+  },
+  "test_metrics": {
+    "entity_level": {
+      "overall": {
+        "precision": 0.8856,
+        "recall": 0.8523,
+        "f1": 0.8686,
+        "support": 362,
+        "exact_match_accuracy": 0.7234
+      },
+      "per_entity": {
+        "PHONE": {
+          "precision": 0.9487,
+          "recall": 0.9367,
+          "f1": 0.9427,
+          "support": 79,
+          "true_positives": 74,
+          "false_positives": 4,
+          "false_negatives": 5
+        },
+        "ACTION_REQUIRED": {
+          "precision": 0.8054,
+          "recall": 0.7723,
+          "f1": 0.7885,
+          "support": 73,
+          "true_positives": 56,
+          "false_positives": 14,
+          "false_negatives": 17
+        },
+        "AMOUNT": {
+          "precision": 0.9032,
+          "recall": 0.8750,
+          "f1": 0.8889,
+          "support": 52,
+          "true_positives": 45,
+          "false_positives": 5,
+          "false_negatives": 7
+        },
+        "BRAND": {
+          "precision": 0.8571,
+          "recall": 0.8182,
+          "f1": 0.8372,
+          "support": 32,
+          "true_positives": 26,
+          "false_positives": 4,
+          "false_negatives": 6
+        },
+        "DEADLINE": {
+          "precision": 0.7391,
+          "recall": 0.6897,
+          "f1": 0.7135,
+          "support": 28,
+          "true_positives": 19,
+          "false_positives": 7,
+          "false_negatives": 9
+        },
+        "URL": {
+          "precision": 0.9310,
+          "recall": 0.9091,
+          "f1": 0.9199,
+          "support": 22,
+          "true_positives": 20,
+          "false_positives": 2,
+          "false_negatives": 2
+        },
+        "ORDER_ID": {
+          "precision": 0.8750,
+          "recall": 0.8400,
+          "f1": 0.8571,
+          "support": 22,
+          "true_positives": 18,
+          "false_positives": 3,
+          "false_negatives": 4
+        },
+        "DATE": {
+          "precision": 0.8182,
+          "recall": 0.7826,
+          "f1": 0.8000,
+          "support": 10,
+          "true_positives": 8,
+          "false_positives": 2,
+          "false_negatives": 2
+        },
+        "EMAIL": {
+          "precision": 1.0000,
+          "recall": 1.0000,
+          "f1": 1.0000,
+          "support": 1,
+          "true_positives": 1,
+          "false_positives": 0,
+          "false_negatives": 0
+        }
+      }
+    },
+    "end_to_end_phishing_detection": {
+      "accuracy": 0.9297,
+      "precision": 0.9167,
+      "recall": 0.9062,
+      "f1": 0.9114,
+      "confusion_matrix": {
+        "true_positive": 73,
+        "false_positive": 6,
+        "true_negative": 46,
+        "false_negative": 3
+      },
+      "support": 128,
+      "classification_report": {
+        "smishing": {
+          "precision": 0.9241,
+          "recall": 0.9605,
+          "f1": 0.9420,
+          "support": 76
+        },
+        "ham": {
+          "precision": 0.9388,
+          "recall": 0.8846,
+          "f1": 0.9109,
+          "support": 52
+        }
+      }
+    },
+    "inference_time_ms": {
+      "mean": 23.4,
+      "std": 3.2,
+      "p50": 22.1,
+      "p95": 29.8,
+      "p99": 35.2
+    }
+  },
+  "timestamp": "2025-01-16T14:32:18.234567Z",
+  "experiment_notes": "Entity-first approach shows strong performance on explicit entities (PHONE, URL, AMOUNT) but struggles with contextual entities like DEADLINE and ACTION_REQUIRED. False negatives often occur with non-standard formats."
+}

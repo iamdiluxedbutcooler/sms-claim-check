@@ -4,6 +4,8 @@ import logging
 from pathlib import Path
 from typing import Dict, Any, List, Optional
 import os
+import time
+from datetime import datetime
 
 from .entity_ner import EntityNERModel
 
@@ -18,12 +20,28 @@ class HybridNERLLMModel:
         ner_config = config.get('ner_config', {})
         self.ner_model = EntityNERModel(ner_config)
         
-        self.llm_provider = config.get('llm_provider', 'openai')  # or 'anthropic', 'flan-t5'
-        self.llm_model = config.get('llm_model', 'gpt-3.5-turbo')
+        self.llm_provider = config.get('llm_provider', 'openai')
+        self.llm_model = config.get('llm_model', 'gpt-4o-mini')
         self.use_local_llm = config.get('use_local_llm', False)
+        self.use_batch_api = config.get('use_batch_api', True)
+        self.openai_api_key = None
         
-        self._init_llm_client()
-    
+    def _get_api_key(self):
+        if self.openai_api_key:
+            return self.openai_api_key
+        
+        api_key = os.getenv('OPENAI_API_KEY')
+        if not api_key:
+            import getpass
+            logger.info("\n" + "="*70)
+            logger.info("OpenAI API Key Required")
+            logger.info("="*70)
+            api_key = getpass.getpass("Enter your OpenAI API key: ").strip()
+            logger.info("API key received\n")
+        
+        self.openai_api_key = api_key
+        return api_key
+        
     def _init_llm_client(self):
         if self.use_local_llm or self.llm_provider == 'flan-t5':
             from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
@@ -33,7 +51,11 @@ class HybridNERLLMModel:
         elif self.llm_provider == 'openai':
             try:
                 from openai import OpenAI
-                self.llm = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+                api_key = self._get_api_key()
+                self.llm = OpenAI(api_key=api_key)
+                logger.info(f"Initialized OpenAI client with model: {self.llm_model}")
+                if self.use_batch_api:
+                    logger.info("Batch API mode enabled")
             except ImportError:
                 logger.warning("OpenAI package not installed. Install with: pip install openai")
                 self.llm = None
@@ -55,8 +77,7 @@ class HybridNERLLMModel:
         
         ner_metrics = self.ner_model.train(train_examples, val_examples, output_dir / "ner")
         
-        logger.info("NER training complete. LLM component uses zero-shot prompting.")
-        
+        logger.info(f"NER training complete: {ner_metrics}")
         return ner_metrics
     
     def evaluate(self, test_examples: List[Dict]) -> Dict[str, float]:
@@ -64,7 +85,161 @@ class HybridNERLLMModel:
         
         ner_metrics = self.ner_model.evaluate(test_examples)
         
+        if self.llm_provider == 'openai' and self.use_batch_api:
+            logger.info("Using OpenAI Batch API for evaluation")
+            texts = [ex['text'] for ex in test_examples]
+            self._process_batch(texts, purpose="evaluation")
+        
         return ner_metrics
+    
+    def _process_batch(self, texts: List[str], purpose: str = "inference") -> Optional[str]:
+        if not self.llm:
+            logger.error("OpenAI client not initialized")
+            return None
+        
+        batch_file = self._create_batch_input_file(texts)
+        
+        logger.info(f"Uploading batch file for {len(texts)} texts...")
+        with open(batch_file, 'rb') as f:
+            file_response = self.llm.files.create(file=f, purpose='batch')
+        
+        batch_input_file_id = file_response.id
+        logger.info(f"Batch file uploaded: {batch_input_file_id}")
+        
+        logger.info("Creating batch job...")
+        batch_response = self.llm.batches.create(
+            input_file_id=batch_input_file_id,
+            endpoint="/v1/chat/completions",
+            completion_window="24h",
+            metadata={
+                "purpose": purpose,
+                "timestamp": datetime.now().isoformat()
+            }
+        )
+        
+        batch_id = batch_response.id
+        logger.info(f"Batch job created: {batch_id}")
+        logger.info(f"Status: {batch_response.status}")
+        logger.info("Batch will complete within 24 hours. Check status with batch_id.")
+        
+        return batch_id
+    
+    def _create_batch_input_file(self, texts: List[str]) -> Path:
+        batch_requests = []
+        
+        for idx, text in enumerate(texts):
+            ner_result = self.ner_model.predict(text)
+            entities = ner_result['entities']
+            
+            if not entities:
+                continue
+            
+            prompt = self._build_structuring_prompt(text, entities)
+            
+            request = {
+                "custom_id": f"request-{idx}",
+                "method": "POST",
+                "url": "/v1/chat/completions",
+                "body": {
+                    "model": self.llm_model,
+                    "messages": [
+                        {
+                            "role": "system",
+                            "content": "You are a helpful assistant that structures phishing claims from SMS messages."
+                        },
+                        {
+                            "role": "user",
+                            "content": prompt
+                        }
+                    ],
+                    "temperature": 0.3,
+                    "max_tokens": 512
+                }
+            }
+            batch_requests.append(request)
+        
+        batch_file = Path(f"batch_input_{datetime.now().strftime('%Y%m%d_%H%M%S')}.jsonl")
+        
+        with open(batch_file, 'w') as f:
+            for request in batch_requests:
+                f.write(json.dumps(request) + '\n')
+        
+        logger.info(f"Created batch input file: {batch_file} ({len(batch_requests)} requests)")
+        return batch_file
+    
+    def check_batch_status(self, batch_id: str) -> Dict[str, Any]:
+        if not self.llm:
+            logger.error("OpenAI client not initialized")
+            return {}
+        
+        batch = self.llm.batches.retrieve(batch_id)
+        
+        status_info = {
+            'id': batch.id,
+            'status': batch.status,
+            'created_at': batch.created_at,
+            'completed_at': batch.completed_at,
+            'failed_at': batch.failed_at,
+            'request_counts': {
+                'total': batch.request_counts.total,
+                'completed': batch.request_counts.completed,
+                'failed': batch.request_counts.failed
+            }
+        }
+        
+        logger.info(f"Batch {batch_id} status: {batch.status}")
+        logger.info(f"Progress: {batch.request_counts.completed}/{batch.request_counts.total}")
+        
+        return status_info
+    
+    def retrieve_batch_results(self, batch_id: str, output_file: Optional[Path] = None) -> List[Dict]:
+        if not self.llm:
+            logger.error("OpenAI client not initialized")
+            return []
+        
+        batch = self.llm.batches.retrieve(batch_id)
+        
+        if batch.status != 'completed':
+            logger.warning(f"Batch not completed yet. Status: {batch.status}")
+            return []
+        
+        if not batch.output_file_id:
+            logger.error("No output file available")
+            return []
+        
+        logger.info(f"Downloading batch results from file: {batch.output_file_id}")
+        file_response = self.llm.files.content(batch.output_file_id)
+        
+        if output_file:
+            output_file = Path(output_file)
+            output_file.write_text(file_response.text)
+            logger.info(f"Batch results saved to: {output_file}")
+        
+        results = []
+        for line in file_response.text.strip().split('\n'):
+            result = json.loads(line)
+            results.append(result)
+        
+        logger.info(f"Retrieved {len(results)} batch results")
+        return results
+    
+    def parse_batch_results(self, results: List[Dict]) -> Dict[str, List[Dict]]:
+        structured_outputs = {}
+        
+        for result in results:
+            custom_id = result.get('custom_id', '')
+            
+            if result.get('response', {}).get('status_code') == 200:
+                body = result['response']['body']
+                content = body['choices'][0]['message']['content']
+                
+                claims = self._parse_llm_response(content)
+                structured_outputs[custom_id] = claims
+            else:
+                logger.error(f"Request {custom_id} failed: {result.get('error')}")
+                structured_outputs[custom_id] = []
+        
+        return structured_outputs
     
     def predict(self, text: str) -> Dict[str, Any]:
         ner_result = self.ner_model.predict(text)
