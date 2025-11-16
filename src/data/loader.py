@@ -121,7 +121,7 @@ class AnnotationLoader:
         split_mapping_path = Path(__file__).parent.parent.parent / 'data' / 'processed' / 'annotation_split_mapping.json'
         
         if split_mapping_path.exists():
-            logger.info("Using original dataset train/test split")
+            logger.info("Using EXACT original dataset train/test split (NO validation split)")
             with open(split_mapping_path, 'r') as f:
                 split_mapping = json.load(f)
             
@@ -136,18 +136,13 @@ class AnnotationLoader:
             train_msgs = [msg for msg in messages if msg.id in train_ids]
             test_msgs = [msg for msg in messages if msg.id in test_ids]
             
-            # Split train into train + val
-            val_size = val_ratio / (train_ratio + val_ratio)
-            train_msgs, val_msgs = train_test_split(
-                train_msgs,
-                test_size=val_size,
-                random_state=seed,
-                shuffle=True
-            )
+            # Use train as both train and val (no separate val set)
+            # Models will use train for training and test for final evaluation
+            val_msgs = []  # Empty - use test for validation during training
             
-            logger.info(f"Data split (respecting original):")
-            logger.info(f"  Train: {len(train_msgs)} messages")
-            logger.info(f"  Val:   {len(val_msgs)} messages")
+            logger.info(f"Data split (EXACT match to processed CSVs):")
+            logger.info(f"  Train: {len(train_msgs)} messages (for training & validation)")
+            logger.info(f"  Val:   0 messages (using test set for validation)")
             logger.info(f"  Test:  {len(test_msgs)} messages (from original test set)")
         
         else:
