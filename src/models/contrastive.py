@@ -122,7 +122,10 @@ class ContrastiveModel(BaseModel):
         
         logger.info(f"Training {self.get_name()} with {len(train_examples)} examples")
         
-        self.tokenizer = AutoTokenizer.from_pretrained(self.model_name)
+        tokenizer_kwargs = {}
+        if 'roberta' in self.model_name.lower():
+            tokenizer_kwargs['add_prefix_space'] = True
+        self.tokenizer = AutoTokenizer.from_pretrained(self.model_name, **tokenizer_kwargs)
         self.model = ContrastiveEncoder(self.model_name, self.embedding_dim)
         self.model.to(self.device)
         
@@ -307,7 +310,10 @@ class ContrastiveModel(BaseModel):
         
         logger.info(f"Loading model from {model_dir}")
         
-        self.tokenizer = AutoTokenizer.from_pretrained(model_dir)
+        tokenizer_kwargs = {}
+        if 'roberta' in str(model_dir).lower():
+            tokenizer_kwargs['add_prefix_space'] = True
+        self.tokenizer = AutoTokenizer.from_pretrained(model_dir, **tokenizer_kwargs)
         
         self.model = ContrastiveEncoder(self.model_name, self.embedding_dim)
         

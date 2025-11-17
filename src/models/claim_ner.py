@@ -47,7 +47,12 @@ class ClaimNERModel(BaseModel):
     ) -> Dict[str, float]:
         logger.info(f"Training {self.get_name()} with {len(train_examples)} examples")
         
-        self.tokenizer = AutoTokenizer.from_pretrained(self.model_name)
+        # Add add_prefix_space=True for RoBERTa models
+        tokenizer_kwargs = {}
+        if 'roberta' in self.model_name.lower():
+            tokenizer_kwargs['add_prefix_space'] = True
+        
+        self.tokenizer = AutoTokenizer.from_pretrained(self.model_name, **tokenizer_kwargs)
         self.model = AutoModelForTokenClassification.from_pretrained(
             self.model_name,
             num_labels=len(self.label2id),
@@ -262,7 +267,10 @@ class ClaimNERModel(BaseModel):
         
         logger.info(f"Loading model from {model_dir}")
         
-        self.tokenizer = AutoTokenizer.from_pretrained(model_dir)
+        tokenizer_kwargs = {}
+        if 'roberta' in str(model_dir).lower():
+            tokenizer_kwargs['add_prefix_space'] = True
+        self.tokenizer = AutoTokenizer.from_pretrained(model_dir, **tokenizer_kwargs)
         self.model = AutoModelForTokenClassification.from_pretrained(model_dir)
         
         with open(model_dir / "label_mapping.json", 'r') as f:
