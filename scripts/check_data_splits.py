@@ -15,13 +15,17 @@ def main():
     print("Checking data split integrity...")
     print("=" * 60)
     
-    # Load original splits
+    # Load original splits - ONLY SMISHING
     train_df = pd.read_csv('data/processed/train.csv')
     test_df = pd.read_csv('data/processed/test.csv')
     
-    print(f"Original dataset:")
-    print(f"  Train: {len(train_df)} messages")
-    print(f"  Test:  {len(test_df)} messages")
+    train_smishing = train_df[train_df['label'] == 'smishing']
+    test_smishing = test_df[test_df['label'] == 'smishing']
+    
+    print(f"Original dataset (SMISHING ONLY):")
+    print(f"  Train: {len(train_smishing)} smishing messages")
+    print(f"  Test:  {len(test_smishing)} smishing messages")
+    print(f"  Total: {len(train_smishing) + len(test_smishing)} smishing")
     print()
     
     # Load raw dataset with indices
@@ -29,9 +33,9 @@ def main():
     print(f"Raw dataset: {len(raw_df)} messages")
     print()
     
-    # Match processed splits back to raw indices
-    train_texts = set(train_df['text'].str.strip())
-    test_texts = set(test_df['text'].str.strip())
+    # Match processed splits back to raw indices - SMISHING ONLY
+    train_texts = set(train_smishing['text'].str.strip())
+    test_texts = set(test_smishing['text'].str.strip())
     
     train_indices = []
     test_indices = []
