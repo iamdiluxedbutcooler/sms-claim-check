@@ -124,22 +124,35 @@ class ClaimNERModel(BaseModel):
         )
         
         labels = []
-        # Use 'claim_tags' from preprocessor
-        label_key = 'claim_tags' if 'claim_tags' in examples else 'labels'
-        for i, label_list in enumerate(examples[label_key]):
+        # Prefer human-readable string labels if available (claim_tags_str),
+        # otherwise use numeric claim_tags produced by the preprocessor.
+        if 'claim_tags_str' in examples:
+            use_str = True
+            raw_key = 'claim_tags_str'
+        else:
+            use_str = False
+            raw_key = 'claim_tags' if 'claim_tags' in examples else 'labels'
+
+        for i, label_list in enumerate(examples[raw_key]):
             word_ids = tokenized_inputs.word_ids(batch_index=i)
             label_ids = []
-            
+
             previous_word_idx = None
             for word_idx in word_ids:
                 if word_idx is None:
                     label_ids.append(-100)
                 elif word_idx != previous_word_idx:
-                    label_ids.append(self.label2id[label_list[word_idx]])
+                    # label_list may already contain integer ids (from preprocessor)
+                    if not use_str and isinstance(label_list[word_idx], int):
+                        label_ids.append(int(label_list[word_idx]))
+                    else:
+                        # Map string label -> id (fall back to 'O' if unknown)
+                        label_str = label_list[word_idx]
+                        label_ids.append(self.label2id.get(label_str, self.label2id.get('O', 0)))
                 else:
                     label_ids.append(-100)
                 previous_word_idx = word_idx
-            
+
             labels.append(label_ids)
         
         tokenized_inputs['labels'] = labels
