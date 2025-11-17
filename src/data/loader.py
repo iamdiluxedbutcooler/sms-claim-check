@@ -115,13 +115,24 @@ class AnnotationLoader:
         test_ratio: float = 0.16,
         seed: int = 42
     ) -> Tuple[List[Message], List[Message], List[Message]]:
+        """
+        Split data into train/val/test OR return train/test for K-fold CV.
+        
+        If using original split mapping (annotation_split_mapping_clean.json):
+        - Returns: (train_msgs, [], test_msgs)
+        - train_msgs: 459 samples for K-fold cross-validation
+        - val: empty list (use get_kfold_splits for CV)
+        - test_msgs: 103 samples kept completely separate until final evaluation
+        
+        Otherwise: Falls back to random train/val/test split
+        """
         from sklearn.model_selection import train_test_split
         
         # Check if we should use original dataset splits
         split_mapping_path = Path(__file__).parent.parent.parent / 'data' / 'processed' / 'annotation_split_mapping_clean.json'
         
         if split_mapping_path.exists():
-            logger.info("Using EXACT original dataset train/test split (NO validation split)")
+            logger.info("Using EXACT original dataset train/test split")
             with open(split_mapping_path, 'r') as f:
                 split_mapping = json.load(f)
             
@@ -136,13 +147,14 @@ class AnnotationLoader:
             train_msgs = [msg for msg in messages if msg.id in train_ids]
             test_msgs = [msg for msg in messages if msg.id in test_ids]
             
-            # Use test as val during training (no separate val split)
-            val_msgs = test_msgs  # Use test set for validation during training
+            # NO validation split - use K-fold CV on train_msgs instead
+            val_msgs = []
             
-            logger.info(f"Data split (EXACT match to processed CSVs):")
-            logger.info(f"  Train: {len(train_msgs)} messages (for training & validation)")
-            logger.info(f"  Val:   0 messages (using test set for validation)")
-            logger.info(f"  Test:  {len(test_msgs)} messages (from original test set)")
+            logger.info(f"Data split (K-Fold CV mode):")
+            logger.info(f"  Train: {len(train_msgs)} messages (use get_kfold_splits for CV)")
+            logger.info(f"  Val:   NONE (use K-fold cross-validation)")
+            logger.info(f"  Test:  {len(test_msgs)} messages (BLIND - only for final evaluation)")
+            logger.info(f"\n  ⚠️  Test set is UNTOUCHED during training/validation")
         
         else:
             # Fallback to random split
@@ -170,3 +182,41 @@ class AnnotationLoader:
             logger.info(f"  Test:  {len(test_msgs)} messages ({test_ratio*100:.1f}%)")
         
         return train_msgs, val_msgs, test_msgs
+    
+    def get_kfold_splits(
+        self,
+        train_messages: List[Message],
+        n_splits: int = 5,
+        seed: int = 42
+    ) -> List[Tuple[List[Message], List[Message]]]:
+        """
+        Generate K-fold cross-validation splits from training data.
+        
+        Args:
+            train_messages: Training messages (should be 459 samples)
+            n_splits: Number of folds (default: 5)
+            seed: Random seed for reproducibility
+        
+        Returns:
+            List of (train_fold, val_fold) tuples, one for each fold
+            Each fold: ~367 train / ~92 validation samples
+        """
+        from sklearn.model_selection import KFold
+        
+        kfold = KFold(n_splits=n_splits, shuffle=True, random_state=seed)
+        folds = []
+        
+        logger.info(f"\nGenerating {n_splits}-Fold Cross-Validation splits:")
+        
+        for fold_idx, (train_idx, val_idx) in enumerate(kfold.split(train_messages)):
+            train_fold = [train_messages[i] for i in train_idx]
+            val_fold = [train_messages[i] for i in val_idx]
+            
+            folds.append((train_fold, val_fold))
+            
+            logger.info(f"  Fold {fold_idx + 1}: {len(train_fold)} train / {len(val_fold)} val")
+        
+        logger.info(f"\n✓ K-Fold splits ready. Train each fold and average results.")
+        logger.info(f"✓ Test set ({len(train_messages) - len(train_fold) - len(val_fold)} samples) remains BLIND until final evaluation.")
+        
+        return folds
