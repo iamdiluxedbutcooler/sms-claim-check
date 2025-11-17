@@ -136,9 +136,8 @@ class AnnotationLoader:
             train_msgs = [msg for msg in messages if msg.id in train_ids]
             test_msgs = [msg for msg in messages if msg.id in test_ids]
             
-            # Use train as both train and val (no separate val set)
-            # Models will use train for training and test for final evaluation
-            val_msgs = []  # Empty - use test for validation during training
+            # Use test as val during training (no separate val split)
+            val_msgs = test_msgs  # Use test set for validation during training
             
             logger.info(f"Data split (EXACT match to processed CSVs):")
             logger.info(f"  Train: {len(train_msgs)} messages (for training & validation)")

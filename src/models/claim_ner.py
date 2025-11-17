@@ -124,7 +124,9 @@ class ClaimNERModel(BaseModel):
         )
         
         labels = []
-        for i, label_list in enumerate(examples['labels']):
+        # Use 'claim_tags' from preprocessor
+        label_key = 'claim_tags' if 'claim_tags' in examples else 'labels'
+        for i, label_list in enumerate(examples[label_key]):
             word_ids = tokenized_inputs.word_ids(batch_index=i)
             label_ids = []
             
