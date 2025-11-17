@@ -34,7 +34,7 @@ training_config:
   seed: 42
 
 data_config:
-  annotations_file: "data/annotations/entity_annotations.json"
+  annotations_file: data/annotations/entity_annotations_clean.json
   train_ratio: 0.67
   val_ratio: 0.17
   test_ratio: 0.16

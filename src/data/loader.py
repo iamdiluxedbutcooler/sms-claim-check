@@ -118,7 +118,7 @@ class AnnotationLoader:
         from sklearn.model_selection import train_test_split
         
         # Check if we should use original dataset splits
-        split_mapping_path = Path(__file__).parent.parent.parent / 'data' / 'processed' / 'annotation_split_mapping.json'
+        split_mapping_path = Path(__file__).parent.parent.parent / 'data' / 'processed' / 'annotation_split_mapping_clean.json'
         
         if split_mapping_path.exists():
             logger.info("Using EXACT original dataset train/test split (NO validation split)")
