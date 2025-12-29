@@ -1,0 +1,1010 @@
+{
+  "missing_urgency": [
+    {
+      "idx": 175,
+      "id": "mendeley_545",
+      "text": "Dear customer your PAY2TMKYC has been expired, It\ufffds will be bl0cked within 24 hour, please contact customer! Care ph\ufffd 6200992462 immediately to verify",
+      "keyword": "immediately",
+      "start": 129,
+      "end": 140,
+      "is_ham": false
+    },
+    {
+      "idx": 219,
+      "id": 1657,
+      "text": "Maybe i could get book out tomo then return it immediately ..? Or something.",
+      "keyword": "immediately",
+      "start": 47,
+      "end": 58,
+      "is_ham": true
+    },
+    {
+      "idx": 394,
+      "id": "mendeley_345",
+      "text": "Dear customer your PAY2TMKYC has been expired, It\ufffds will be bl0cked within 24 hour, please contact customer! Care ph\ufffd 7044518857 immediately to verify",
+      "keyword": "immediately",
+      "start": 129,
+      "end": 140,
+      "is_ham": false
+    },
+    {
+      "idx": 958,
+      "id": "mendeley_256",
+      "text": "Dear customer your PAY2TMKYC has been expired, It\ufffds will be bl0cked within 24 hour, please contact customer! Care ph\ufffd 8536074310 immediately to verify",
+      "keyword": "immediately",
+      "start": 129,
+      "end": 140,
+      "is_ham": false
+    },
+    {
+      "idx": 966,
+      "id": 1209,
+      "text": "Oic... Then better quickly go bathe n settle down...",
+      "keyword": "quickly",
+      "start": 19,
+      "end": 26,
+      "is_ham": true
+    },
+    {
+      "idx": 1035,
+      "id": 1498,
+      "text": "I might come to kerala for 2 days.so you can be prepared to take a leave once i finalise .dont plan any travel during my visit.need to finish urgent works.",
+      "keyword": "urgent",
+      "start": 142,
+      "end": 148,
+      "is_ham": true
+    },
+    {
+      "idx": 1126,
+      "id": "augmented_436",
+      "text": "Dear Valued Customer, your recent order of \u20ac42.84 has been successfully processed. If you did not make this purchase or suspect unauthorized access, please verify your account immediately at http://secure.order-confirmation.com.",
+      "keyword": "immediately",
+      "start": 176,
+      "end": 187,
+      "is_ham": false
+    },
+    {
+      "idx": 1290,
+      "id": "augmented_351",
+      "text": "Urgent: Your Netflix account is on hold due to a billing issue. Please verify your payment info at netflix.com/verify to avoid interruption.",
+      "keyword": "Urgent",
+      "start": 0,
+      "end": 6,
+      "is_ham": false
+    },
+    {
+      "idx": 1368,
+      "id": 1536,
+      "text": "Lol no. I just need to cash in my nitros. Hurry come on before I crash out!",
+      "keyword": "Hurry",
+      "start": 42,
+      "end": 47,
+      "is_ham": true
+    },
+    {
+      "idx": 1514,
+      "id": 1368,
+      "text": "And he's apparently bffs with carly quick now",
+      "keyword": "quick",
+      "start": 36,
+      "end": 41,
+      "is_ham": true
+    },
+    {
+      "idx": 1852,
+      "id": "augmented_384",
+      "text": "Attention Business Owners! Quick funding available for traders and industries with turnover above 20L. Call us at 9876543210 to learn more!",
+      "keyword": "Quick",
+      "start": 27,
+      "end": 32,
+      "is_ham": false
+    },
+    {
+      "idx": 1880,
+      "id": "mendeley_163",
+      "text": "Dear customer your PAY2TMKYC has been expired, It\ufffds will be bl0cked within 24 hour, please contact customer! Care ph\ufffd  7679046492 immediately to verify",
+      "keyword": "immediately",
+      "start": 130,
+      "end": 141,
+      "is_ham": false
+    }
+  ],
+  "missing_action": [
+    {
+      "idx": 14,
+      "id": "augmented_208",
+      "text": "Congratulations! You have been selected to receive a SiPix Digital Camera. Please call 09061221067 from a landline to confirm your delivery within 28 days. Act fast!",
+      "keyword": "call",
+      "start": 82,
+      "end": 86
+    },
+    {
+      "idx": 52,
+      "id": "mendeley_27",
+      "text": "Thanks for your ringtone order, reference number X29. Your mobile will be charged 4.50. Should your tone not arrive please call customer services 09065989180",
+      "keyword": "call",
+      "start": 123,
+      "end": 127
+    },
+    {
+      "idx": 68,
+      "id": "mendeley_251",
+      "text": "Claim a 200 shopping spree, just call 08717895698 now! Have you won! MobStoreQuiz10ppm",
+      "keyword": "Claim",
+      "start": 0,
+      "end": 5
+    },
+    {
+      "idx": 92,
+      "id": "mendeley_132",
+      "text": "Urgent! Please call 09061743811 from landline. Your ABTA complimentary 4* Tenerife Holiday or \u00a35000 cash await collection SAE T&Cs Box 326 CW25WX 150ppm",
+      "keyword": "call",
+      "start": 15,
+      "end": 19
+    },
+    {
+      "idx": 125,
+      "id": "augmented_146",
+      "text": "Dear Matthew, please contact us urgently at 09063440451 from a landline. You have been selected for a complimentary 4* luxury holiday in Tenerife or \u00a31000 cash. Terms apply.",
+      "keyword": "contact",
+      "start": 21,
+      "end": 28
+    },
+    {
+      "idx": 126,
+      "id": "augmented_197",
+      "text": "IMPORTANT NOTICE for ORANGE USER 0796XXXXXX: Today could change everything for you! Visit http://www.urawinner.com to claim your exclusive prize. Act fast!",
+      "keyword": "Visit",
+      "start": 84,
+      "end": 89
+    },
+    {
+      "idx": 129,
+      "id": "mendeley_187",
+      "text": "We tried to call you re your reply to our sms for a video mobile 750 mins UNLIMITED TEXT + free camcorder Reply of call 08000930705 Now",
+      "keyword": "call",
+      "start": 12,
+      "end": 16
+    },
+    {
+      "idx": 162,
+      "id": "mendeley_535",
+      "text": "Urgent Please call 09066612661 from landline. \u00a35000 cash or a luxury 4* Canary Islands Holiday await collection. T&Cs SAE award. 20M12AQ. 150ppm. 16+ \u201c",
+      "keyword": "call",
+      "start": 14,
+      "end": 18
+    },
+    {
+      "idx": 168,
+      "id": "augmented_238",
+      "text": "ALERT! Your Netflix account has been compromised! Confirm your identity to avoid suspension. Click here: bit.ly/NetflixSecure NOW!",
+      "keyword": "Click",
+      "start": 93,
+      "end": 98
+    },
+    {
+      "idx": 181,
+      "id": "augmented_393",
+      "text": "Congratulations! You\u2019ve been chosen to win a \u00a32000 cash prize! Call 08001234567 NOW to claim your reward. Standard call rates apply. 18+. Terms and conditions.",
+      "keyword": "Call",
+      "start": 63,
+      "end": 67
+    },
+    {
+      "idx": 187,
+      "id": "mendeley_358",
+      "text": "Congrats 2 mobile 3G Videophones R yours. call 09063458120 now! videochat wid ur mates, play java games, Dload polypH music, noline rentl.",
+      "keyword": "call",
+      "start": 42,
+      "end": 46
+    },
+    {
+      "idx": 194,
+      "id": "augmented_150",
+      "text": "Congratulations! Your Promotion Number: 8714714 has secured you a City Break and a \u00a3200 Summer Shopping spree. Claim your prize by calling 0871 873 8034 now!",
+      "keyword": "Claim",
+      "start": 111,
+      "end": 116
+    },
+    {
+      "idx": 247,
+      "id": "augmented_247",
+      "text": "You have received an important message regarding your account. Please contact our support team at 0871-240-0200 immediately to verify your details.",
+      "keyword": "contact",
+      "start": 70,
+      "end": 77
+    },
+    {
+      "idx": 269,
+      "id": "augmented_211",
+      "text": "Congratulations! You've been selected for a FREE Samsung Galaxy S21! Enjoy 300 minutes of calls anywhere. Reply NOW or call 9001234567 to claim!",
+      "keyword": "Reply",
+      "start": 106,
+      "end": 111
+    },
+    {
+      "idx": 283,
+      "id": "mendeley_45",
+      "text": "Our dating service has been asked 2 contact U by someone shy! CALL 09058091870 NOW all will be revealed. POBox84, M26 3UZ 150p",
+      "keyword": "contact",
+      "start": 36,
+      "end": 43
+    },
+    {
+      "idx": 295,
+      "id": "mendeley_402",
+      "text": "December only! Had your mobile 11mths+? You are entitled to update to the latest colour camera mobile for Free! Call  on 08002986905",
+      "keyword": "Call",
+      "start": 112,
+      "end": 116
+    },
+    {
+      "idx": 312,
+      "id": "mendeley_89",
+      "text": "YOUR MOBILE NUMBER HAS WON 3.6 CRORE FROM SAMSUNG UK AWARD TO RECEIVE YOUR PRIZE,SEND UR NAME, MOBILE,N0,ADDRES, AGE,SEX, OCCUP TO\ufffdsamsungzoneuk@outlook.com",
+      "keyword": "TO RECEIVE",
+      "start": 59,
+      "end": 69
+    },
+    {
+      "idx": 349,
+      "id": "mendeley_387",
+      "text": "Last chance 2 claim ur \u00a3250 worth of discount vouchers-Text YES to 85022 now!SavaMob-member offers mobile T Cs 08717898036. \u00a33.00 Sub. 16 .",
+      "keyword": "claim",
+      "start": 14,
+      "end": 19
+    },
+    {
+      "idx": 351,
+      "id": "augmented_391",
+      "text": "Congratulations! You have been selected for a guaranteed cash prize of \u20b97,00,000. Please contact our customer service team immediately at 76790-46492 between 10 AM - 9 PM to claim your prize. FLIPKART TEAM",
+      "keyword": "contact",
+      "start": 89,
+      "end": 96
+    },
+    {
+      "idx": 360,
+      "id": "augmented_100",
+      "text": "You have a new message from our exclusive dating service. Someone is interested in you! To discover their identity, please call us at 09058098002 from a landline. Urgent response required.",
+      "keyword": "call",
+      "start": 123,
+      "end": 127
+    },
+    {
+      "idx": 363,
+      "id": "augmented_159",
+      "text": "Congratulations! You have been selected to receive \u00a3500 in shopping vouchers and guaranteed entry to our weekly \u00a3100 draw. Respond with \"MUSIC\" to 87066 to claim your prize. Terms apply: www.Ldew.com. Act now!",
+      "keyword": "Respond",
+      "start": 123,
+      "end": 130
+    },
+    {
+      "idx": 427,
+      "id": "augmented_339",
+      "text": "Congratulations! You\u2019ve been selected for 500 free text messages. Reply \"OK\" to 80488 or call 0871 873 8034 to activate your account. Act fast\u2014offer expires soon!",
+      "keyword": "text",
+      "start": 51,
+      "end": 55
+    },
+    {
+      "idx": 469,
+      "id": "augmented_417",
+      "text": "Your recent vehicle tax has been reviewed, and you qualify for a refund of \u00a348.50. Visit the secure link https://www.taxrefunds.com/claim to receive it now!",
+      "keyword": "Visit",
+      "start": 83,
+      "end": 88
+    },
+    {
+      "idx": 532,
+      "id": "mendeley_243",
+      "text": "WINNER!7827156256 is chosen for $2500 CASH prize, call+38977148576 now",
+      "keyword": "call",
+      "start": 50,
+      "end": 54
+    },
+    {
+      "idx": 563,
+      "id": "mendeley_62",
+      "text": "Please CALL 08712402578 immediately as there is an urgent message waiting for you",
+      "keyword": "CALL",
+      "start": 7,
+      "end": 11
+    },
+    {
+      "idx": 602,
+      "id": "augmented_12",
+      "text": "HMRC GOV.UK: Our records indicate you are eligible for a tax refund of \u00a3398.90. Please verify your details at: https://ukhmrc-tax-refund.com to expedite your claim.",
+      "keyword": "claim",
+      "start": 158,
+      "end": 163
+    },
+    {
+      "idx": 604,
+      "id": "mendeley_482",
+      "text": "Urgent -call 09066649731from Landline. Your complimentary 4* Ibiza Holiday or \u00a310,000 cash await collection SAE T&Cs PO BOX 434 SK3 8WP 150ppm 18+",
+      "keyword": "call",
+      "start": 8,
+      "end": 12
+    },
+    {
+      "idx": 605,
+      "id": "augmented_242",
+      "text": "Exclusive Deal Alert! Get \u00a3200 in gift cards today! Reply YES to 87456 immediately! BestDeals, your exclusive mobile savings! T&Cs call 08454876543. \u00a33.50 Sub. 16+. Unsub text STOP.",
+      "keyword": "Reply",
+      "start": 52,
+      "end": 57
+    },
+    {
+      "idx": 623,
+      "id": "mendeley_144",
+      "text": "We would like to inform you that you have been recorded as leaving your home on 3 occasions yesterday. A fine of \ufffd35 has been added to your gov.uk\ufffdaccount. For further information please visit\ufffdgov.uk/ coronavirus-penalty-payment racking. Protect the NHS. Save lives",
+      "keyword": "visit",
+      "start": 187,
+      "end": 192
+    },
+    {
+      "idx": 642,
+      "id": "augmented_241",
+      "text": "Congratulations! You've been selected for an exclusive chance to receive a FREE smartwatch! Reply NOW to claim yours. Limited stock available! Msg & data rates may apply.",
+      "keyword": "Reply",
+      "start": 92,
+      "end": 97
+    },
+    {
+      "idx": 658,
+      "id": "augmented_89",
+      "text": "Congratulations! Your Netflix account has been selected for an exclusive \u00a3300 loyalty bonus! Reply NOW to claim your cash reward or risk losing it!",
+      "keyword": "Reply",
+      "start": 93,
+      "end": 98
+    },
+    {
+      "idx": 668,
+      "id": "mendeley_8",
+      "text": "<Forwarded from 448712404000>Please CALL 08712404000 immediately as there is an urgent message waiting for you.",
+      "keyword": "CALL",
+      "start": 36,
+      "end": 40
+    },
+    {
+      "idx": 675,
+      "id": "augmented_26",
+      "text": "Congratulations! You've been selected for an exclusive health insurance rebate worth $5,000. To claim your bonus, please call 1-800-555-0199 now!",
+      "keyword": "claim",
+      "start": 96,
+      "end": 101
+    },
+    {
+      "idx": 693,
+      "id": "mendeley_75",
+      "text": "Congrats! 1 year special cinema pass for 2 is yours. call 09061209467 now! C Suprman V, Matrix3, StarWars3, etc all 4 FREE! bx420-ip4-5we. 150pm. Dont miss out!",
+      "keyword": "call",
+      "start": 53,
+      "end": 57
+    },
+    {
+      "idx": 715,
+      "id": "mendeley_80",
+      "text": "tells u 2 call 09066358152 to claim \u00a35000 prize. U have 2 enter all ur mobile & personal details @ the prompts. Careful!",
+      "keyword": "call",
+      "start": 10,
+      "end": 14
+    },
+    {
+      "idx": 741,
+      "id": "mendeley_444",
+      "text": "Txt: CALL to No: 86888 & claim your reward of 3 hours talk time to use from your phone now! Subscribe6GBP/mnth inc 3hrs 16 stop?txtStop www.gamb.tv",
+      "keyword": "CALL",
+      "start": 5,
+      "end": 9
+    },
+    {
+      "idx": 768,
+      "id": "mendeley_76",
+      "text": "Call from 08702490080 - tells u 2 call 09066358152 to claim \u00a35000 prize. U have 2 enter all ur mobile & personal details @ the prompts. Careful!",
+      "keyword": "Call",
+      "start": 0,
+      "end": 4
+    },
+    {
+      "idx": 790,
+      "id": "augmented_291",
+      "text": "ALERT! You've been selected for an exclusive \u00a31000 prize! Call 08001234567 now before it's too late! T&Cs apply. Max call cost \u00a35.50. Don't miss out!",
+      "keyword": "Call",
+      "start": 58,
+      "end": 62
+    },
+    {
+      "idx": 792,
+      "id": "augmented_200",
+      "text": "Congratulations! You are a finalist in our exclusive prize draw taking place on February 28th. Respond STOP to 87239 to opt-out. For inquiries, call customer service at 0870 803 4412. Act fast!",
+      "keyword": "Respond",
+      "start": 95,
+      "end": 102
+    },
+    {
+      "idx": 816,
+      "id": "augmented_31",
+      "text": "ALERT! You have been selected for an exclusive offer! Congratulations, you could win a \u00a32500 cash prize! Call 08081234567 to claim within 10 hours.",
+      "keyword": "Call",
+      "start": 105,
+      "end": 109
+    },
+    {
+      "idx": 827,
+      "id": "augmented_246",
+      "text": "You have received an important message regarding your account. Please call our verification team at 0871 240 0200 immediately to ensure your security.",
+      "keyword": "call",
+      "start": 70,
+      "end": 74
+    },
+    {
+      "idx": 829,
+      "id": "mendeley_282",
+      "text": "You have been specially selected to receive a 2000 pound award! Call 08712402050 BEFORE the lines close. Cost 10ppm. 16+. T&Cs apply. AG Promo",
+      "keyword": "Call",
+      "start": 64,
+      "end": 68
+    },
+    {
+      "idx": 850,
+      "id": "mendeley_157",
+      "text": "We tried to contact you re our offer of New Video Phone 750 anytime any network mins HALF PRICE Rental camcorder call 08000930705 or reply for delivery Wed",
+      "keyword": "contact",
+      "start": 12,
+      "end": 19
+    },
+    {
+      "idx": 867,
+      "id": "augmented_61",
+      "text": "Missed Call Notification: You have received calls from the following numbers without a message. Please return the call urgently: 0700 800 9200.",
+      "keyword": "Call",
+      "start": 7,
+      "end": 11
+    },
+    {
+      "idx": 875,
+      "id": "mendeley_134",
+      "text": "UR Mobile Number Won 2Crores 35Lakh Rupees In Chevrolet Motors Award 2015 For Claim Send Name Phone Number Address  Age To\ufffdEmail:chevmotorlondon@hotmail.com",
+      "keyword": "Claim",
+      "start": 78,
+      "end": 83
+    },
+    {
+      "idx": 888,
+      "id": "mendeley_192",
+      "text": "Congrats! 2 mobile 3G Videophones R yours. call 09061744553 now! videochat wid ur mates, play java games, Dload polyH music, noline rentl. bx420. ip4. 5we. 150pm",
+      "keyword": "call",
+      "start": 43,
+      "end": 47
+    },
+    {
+      "idx": 900,
+      "id": "augmented_229",
+      "text": "Your account has been awarded 500 complimentary text messages! To activate this offer, please call our verification line at 0871 873 8034. Act quickly to secure your benefits!",
+      "keyword": "text",
+      "start": 48,
+      "end": 52
+    },
+    {
+      "idx": 957,
+      "id": "mendeley_26",
+      "text": "Please CALL 08712402902 immediately as there is an urgent message waiting for you.",
+      "keyword": "CALL",
+      "start": 7,
+      "end": 11
+    },
+    {
+      "idx": 985,
+      "id": "augmented_47",
+      "text": "Your order for a new ringtone has been processed! Ref: YZ34. A charge of \u00a34.99 will appear shortly. If you don\u2019t receive it, call us at 08001234567.",
+      "keyword": "call",
+      "start": 125,
+      "end": 129
+    },
+    {
+      "idx": 988,
+      "id": "mendeley_169",
+      "text": "What do U want for Xmas? How about 100 free text messages & a new video phone with half price line rental? Call free now on 0800 0721072 to find out more!",
+      "keyword": "text",
+      "start": 44,
+      "end": 48
+    },
+    {
+      "idx": 995,
+      "id": "mendeley_152",
+      "text": "It's urgent please Contact me for an UNCLAIMED BEQUEST PAYMENT as the Assigned BENEFICIARY VIA EMAIL infogfreeman@gmail.com Regards Gordon",
+      "keyword": "Contact",
+      "start": 19,
+      "end": 26
+    },
+    {
+      "idx": 1003,
+      "id": "augmented_261",
+      "text": "Urgent: Please call 09066649731 from a landline regarding your exclusive complimentary 4-star Ibiza getaway or \u00a310,000 cash awaiting your collection. Limited time offer!",
+      "keyword": "call",
+      "start": 15,
+      "end": 19
+    },
+    {
+      "idx": 1005,
+      "id": "augmented_41",
+      "text": "IMPORTANT NOTICE: This is your second reminder! You have won a \u00a3900 voucher from Amazon! Contact us immediately at 08001234567 to claim your prize!",
+      "keyword": "Contact",
+      "start": 89,
+      "end": 96
+    },
+    {
+      "idx": 1024,
+      "id": "mendeley_320",
+      "text": "Shop till u Drop, IS IT YOU, either 10K, 5K, \u00a3500 Cash or \u00a3100 Travel voucher, Call now, 09064011000. NTT PO Box CR01327BT fixedline Cost 150ppm mobile vary",
+      "keyword": "Call",
+      "start": 79,
+      "end": 83
+    },
+    {
+      "idx": 1026,
+      "id": "mendeley_355",
+      "text": "T-Mobile customer you may now claim your FREE CAMERA PHONE upgrade & a pay & go sim card for your loyalty. Call on 0845 021 3680.Offer ends 28thFeb.T&C's apply",
+      "keyword": "claim",
+      "start": 30,
+      "end": 35
+    },
+    {
+      "idx": 1037,
+      "id": "augmented_46",
+      "text": "We\u2019ve processed your ringtone request, ref #G57A3. A charge of \u00a34.50 will apply. If you don\u2019t receive it, contact support at 08001234567.",
+      "keyword": "contact",
+      "start": 106,
+      "end": 113
+    },
+    {
+      "idx": 1068,
+      "id": "mendeley_111",
+      "text": "RMO.00 R.HB: RM4388.00 Was Charged On Your Card Numer 9577 at AwG-KLIA2 On 24/10/16 1032:29 Reference Code 342152 Call 03216837293 if u did NOT perform this Txn",
+      "keyword": "Call",
+      "start": 114,
+      "end": 118
+    },
+    {
+      "idx": 1077,
+      "id": "augmented_44",
+      "text": "Dear Helen, your entry in The Daily Draw has qualified you for exclusive access to dozens of free games with fantastic prizes! Claim your rewards now!",
+      "keyword": "Claim",
+      "start": 127,
+      "end": 132
+    },
+    {
+      "idx": 1078,
+      "id": "mendeley_397",
+      "text": "Congrats! 1 year special cinema pass for 2 is yours. call 09061209465 now! C Suprman V, Matrix3, StarWars3, etc all 4 FREE!",
+      "keyword": "call",
+      "start": 53,
+      "end": 57
+    },
+    {
+      "idx": 1123,
+      "id": "mendeley_529",
+      "text": "(6171-M) RMO.00 AEON MY Rs. 4399 was charged on your card num**97 at LAZO-KLIA2 on 19/10/2016. Call 0327884425 if you did NOT perform this  TXN code356931",
+      "keyword": "Call",
+      "start": 95,
+      "end": 99
+    },
+    {
+      "idx": 1143,
+      "id": "augmented_428",
+      "text": "Dear Valued Customer, \n\nYou are invited to participate in the exclusive Prem Jewelrs Vijaynagar Lucky Draw! Join now for just Rs 300/month and stand a chance to win Rs 3600 in gold or silver each month. Call us at 9008097492 to secure your spot today!",
+      "keyword": "Call",
+      "start": 203,
+      "end": 207
+    },
+    {
+      "idx": 1153,
+      "id": "mendeley_216",
+      "text": "Update Message to User,Log on to Verity your login and choose your Existing Questions and Answers correctly Click http://tdbankmobile.cleanbeautytalk.c om/tdmobile Internet support team.",
+      "keyword": "Click",
+      "start": 108,
+      "end": 113
+    },
+    {
+      "idx": 1170,
+      "id": "mendeley_155",
+      "text": "Congratulations, Your entry into our contest last month made you a WINNER! Goto http://www.apple.com.text.won.com\ufffdto claim your prize! You have 24 hours to claim",
+      "keyword": "text",
+      "start": 101,
+      "end": 105
+    },
+    {
+      "idx": 1171,
+      "id": "mendeley_406",
+      "text": "We tried to contact you re your reply to our offer of a Video Handset? 750 anytime any networks mins? UNLIMITED TEXT? call 08000930705 NOW",
+      "keyword": "contact",
+      "start": 12,
+      "end": 19
+    },
+    {
+      "idx": 1172,
+      "id": "augmented_250",
+      "text": "ALERT! Your Netflix account has been selected for a FREE 6-month premium upgrade. Click the link now to verify your identity and enjoy exclusive content!",
+      "keyword": "Click",
+      "start": 82,
+      "end": 87
+    },
+    {
+      "idx": 1186,
+      "id": "mendeley_446",
+      "text": "Shop till u Drop, IS IT YOU, either 10K, 5K, \u00a3500 Cash or \u00a3100 Travel voucher, Call now, 09064011000.",
+      "keyword": "Call",
+      "start": 79,
+      "end": 83
+    },
+    {
+      "idx": 1193,
+      "id": "mendeley_41",
+      "text": "BMO have noticed unusual activites on your online account. You are required to verify your account details.www.97bmo.tk",
+      "keyword": "to verify",
+      "start": 76,
+      "end": 85
+    },
+    {
+      "idx": 1217,
+      "id": "mendeley_372",
+      "text": "Congrats! 1 year special cinema pass for 2 is yours. call 09061209466 now! C Suprman V, Matrix3, StarWars3, etc all 4 FREE! bx420-ip4-5we. 150pm.",
+      "keyword": "call",
+      "start": 53,
+      "end": 57
+    },
+    {
+      "idx": 1229,
+      "id": "augmented_395",
+      "text": "Congratulations! You've been selected for an exclusive \u00a32,000 prize! Hurry, call 08001234567 NOW before the offer expires. Standard rates apply. Age 18+. T&Cs online.",
+      "keyword": "call",
+      "start": 76,
+      "end": 80
+    },
+    {
+      "idx": 1259,
+      "id": "augmented_392",
+      "text": "Congratulations! You've been selected for an exclusive investment opportunity with BANKMAX. Call 9876543210 now to secure your future with a guaranteed return!",
+      "keyword": "Call",
+      "start": 92,
+      "end": 96
+    },
+    {
+      "idx": 1274,
+      "id": "augmented_125",
+      "text": "This week's exclusive SavaMob member offers are now available. Call 0870 950 1522 urgently to unlock your benefits! SavaMob, PO Box 139, LA3 2WU. Just \u00a31.50/week.",
+      "keyword": "Call",
+      "start": 63,
+      "end": 67
+    },
+    {
+      "idx": 1279,
+      "id": "augmented_338",
+      "text": "Alert: Your Netflix subscription has an issue! You have 5 pending rewards points. To resolve, please click here: netflix-rewards.com/urgent",
+      "keyword": "click",
+      "start": 101,
+      "end": 106
+    },
+    {
+      "idx": 1294,
+      "id": "augmented_344",
+      "text": "Your account has been locked due to suspicious activity! Call 03301234567 immediately to restore access. Don't lose your data!",
+      "keyword": "Call",
+      "start": 57,
+      "end": 61
+    },
+    {
+      "idx": 1320,
+      "id": "augmented_286",
+      "text": "Congratulations! You've won a complimentary subscription to Netflix for a year. Claim your prize now at www.netflix-giftclaim.com/id-45ztrnyh8.",
+      "keyword": "Claim",
+      "start": 80,
+      "end": 85
+    },
+    {
+      "idx": 1348,
+      "id": "augmented_97",
+      "text": "ALERT! Your Netflix account has been selected for a FREE 6-month premium upgrade. Respond NOW to confirm your details or risk losing access!",
+      "keyword": "Respond",
+      "start": 82,
+      "end": 89
+    },
+    {
+      "idx": 1372,
+      "id": "augmented_274",
+      "text": "Urgent: Your Netflix subscription is on hold. Verify your account to restore service. Click here now: http://netflix-verification.com?id=GHD32JKL",
+      "keyword": "Click",
+      "start": 86,
+      "end": 91
+    },
+    {
+      "idx": 1385,
+      "id": "augmented_183",
+      "text": "Dear Valued Voucher Holder, your exclusive offer is ready! To claim it today, please visit http://www.e-tlp.co.uk/rewa urgently before it expires.",
+      "keyword": "claim",
+      "start": 62,
+      "end": 67
+    },
+    {
+      "idx": 1392,
+      "id": "mendeley_521",
+      "text": "HMRC GOVUK:0ur records show that your tax refund of \ufffd398.90 can now be claime. Please continue via:https://ukhmrc-tax-refund.com\ufffdto claim your refund.",
+      "keyword": "claim",
+      "start": 132,
+      "end": 137
+    },
+    {
+      "idx": 1430,
+      "id": "augmented_154",
+      "text": "Congratulations! As a valued player, you can now earn 100 points and receive 14,500 Pok\u00e9Coins for Pok\u00e9mon GO. Click here to claim your reward before it expires: http://goo.gle/xxxx",
+      "keyword": "Click",
+      "start": 110,
+      "end": 115
+    },
+    {
+      "idx": 1458,
+      "id": "augmented_170",
+      "text": "Congratulations! You've been selected to receive a complimentary digital camera. Reply with \"SNAP\" to confirm your prize. Act fast; this offer expires soon! Opt-out? Text STOP to 80122300.",
+      "keyword": "Reply",
+      "start": 81,
+      "end": 86
+    },
+    {
+      "idx": 1465,
+      "id": "mendeley_303",
+      "text": "We tried to call you re your reply to our sms for a video mobile 750 mins UNLIMITED TEXT free camcorder Reply or call now 08000930705 Del Thurs",
+      "keyword": "call",
+      "start": 12,
+      "end": 16
+    },
+    {
+      "idx": 1469,
+      "id": "mendeley_73",
+      "text": "Want the latest Video handset? 750 anytime any network mins? Half price line rental? Reply or call 08000930705 for delivery tomorrow",
+      "keyword": "Reply",
+      "start": 85,
+      "end": 90
+    },
+    {
+      "idx": 1471,
+      "id": "mendeley_305",
+      "text": "Do you want a new video handset? 750 anytime any network mins? Half Price Line Rental? Camcorder? Reply or call 08000930705 for delivery tomorrow",
+      "keyword": "Reply",
+      "start": 98,
+      "end": 103
+    },
+    {
+      "idx": 1477,
+      "id": "augmented_313",
+      "text": "Hello! Your Netflix account is eligible for a special offer! Reply \"YES\" to claim a \u00a3500 gift card for your next subscription. Valid for 24 hours!",
+      "keyword": "Reply",
+      "start": 61,
+      "end": 66
+    },
+    {
+      "idx": 1480,
+      "id": "augmented_342",
+      "text": "Immediate opportunity: Experience exclusive adult content now! Call 02073162414. Limited time offer at only 20p/min. Don't miss out!",
+      "keyword": "Call",
+      "start": 63,
+      "end": 67
+    },
+    {
+      "idx": 1484,
+      "id": "mendeley_267",
+      "text": "Call FREEPHONE 0800 542 0578 now!",
+      "keyword": "Call",
+      "start": 0,
+      "end": 4
+    },
+    {
+      "idx": 1510,
+      "id": "mendeley_212",
+      "text": "07732584351 - Rodger Burns - MSG = We tried to call you re your reply to our sms for a free nokia mobile + free camcorder. Please call now 08000930705 for delivery tomorrow",
+      "keyword": "call",
+      "start": 47,
+      "end": 51
+    },
+    {
+      "idx": 1554,
+      "id": "mendeley_418",
+      "text": "UR GOING 2 BAHAMAS! CallFREEFONE 08081560665 and speak to a live operator to claim either Bahamas cruise of\u00a32000 CASH 18+only.",
+      "keyword": "claim",
+      "start": 77,
+      "end": 82
+    },
+    {
+      "idx": 1556,
+      "id": "augmented_85",
+      "text": "Dear Recipient, this is Mandy Sullivan from HOTMIX FM. Congratulations! You have been selected to receive \u00a35,000 in our exclusive Easter Prize Draw. Please call 09041940223 to claim your prize by March 29, or it will be forfeited. Don't miss out!",
+      "keyword": "call",
+      "start": 156,
+      "end": 160
+    },
+    {
+      "idx": 1610,
+      "id": "augmented_214",
+      "text": "URGENT: You have been selected as a winner in today's exclusive draw! Claim your guaranteed \u00a3800 prize by calling 09050000460 from a landline. Reference code: J89. Act now to secure your reward!",
+      "keyword": "Claim",
+      "start": 70,
+      "end": 75
+    },
+    {
+      "idx": 1630,
+      "id": "augmented_385",
+      "text": "Unlock exclusive funding for your startup! Get quick loans with minimal paperwork. Call us at 9876543210 to secure your financial future today!",
+      "keyword": "Call",
+      "start": 83,
+      "end": 87
+    },
+    {
+      "idx": 1635,
+      "id": "augmented_356",
+      "text": "Congratulations! Your Netflix subscription has been upgraded to Premium for free! To claim your exclusive 1-year bonus, verify your account at 123netflix.com.",
+      "keyword": "claim",
+      "start": 85,
+      "end": 90
+    },
+    {
+      "idx": 1644,
+      "id": "mendeley_201",
+      "text": "Today's Offer! Claim ur \u00a3150 worth of discount vouchers! Text YES to 85023 now! SavaMob, member offers mobile! T Cs 08717898036. \u00a33.00 Sub. 16 .",
+      "keyword": "Claim",
+      "start": 15,
+      "end": 20
+    },
+    {
+      "idx": 1650,
+      "id": "augmented_394",
+      "text": "Congratulations! You've won a $5,000 shopping spree at TrendyStore! Reply NOW to claim your prize before it's gone. Msg & data rates may apply.",
+      "keyword": "Reply",
+      "start": 68,
+      "end": 73
+    },
+    {
+      "idx": 1676,
+      "id": "augmented_114",
+      "text": "Important! Dial 08001234567 on your home phone. You've won a luxurious 5-day Cancun getaway or $25,000 cash! Reply ASAP for details. 18+ T&Cs apply.",
+      "keyword": "Reply",
+      "start": 109,
+      "end": 114
+    },
+    {
+      "idx": 1677,
+      "id": "mendeley_64",
+      "text": "Urgent! Please call 09061213237 from landline. \u00a35000 cash or a luxury 4* Canary Islands Holiday await collection. T&Cs SAE PO Box 177. M227XY. 150ppm. 16+",
+      "keyword": "call",
+      "start": 15,
+      "end": 19
+    },
+    {
+      "idx": 1678,
+      "id": "mendeley_138",
+      "text": "Please call Amanda with regard to renewing or upgrading your current T-Mobile handset free of charge. Offer ends today. Tel 0845 021 3680 subject to T's and C's",
+      "keyword": "call",
+      "start": 7,
+      "end": 11
+    },
+    {
+      "idx": 1724,
+      "id": "augmented_433",
+      "text": "Text us your full name and mailing address to get a week of free stay at luxurious resorts worldwide! Visit www.getawayoffers.com or call 08001234567 now!",
+      "keyword": "Text",
+      "start": 0,
+      "end": 4
+    },
+    {
+      "idx": 1766,
+      "id": "augmented_367",
+      "text": "Congratulations! You've been selected for a FREE year of Netflix! Enjoy unlimited streaming of movies and shows. To claim, reply NOW or call 08001234567!",
+      "keyword": "claim",
+      "start": 116,
+      "end": 121
+    },
+    {
+      "idx": 1836,
+      "id": "augmented_84",
+      "text": "Dear Winner, this is Mandy Sullivan from HOTMIX FM. Congratulations! You've been selected to receive \u00a35,000 in our exclusive Easter Prize Draw. Please call 09041940223 before 29/03/2025 to claim your prize. Act quickly to secure your reward!",
+      "keyword": "call",
+      "start": 151,
+      "end": 155
+    },
+    {
+      "idx": 1850,
+      "id": "mendeley_552",
+      "text": "Apple has detected an unauthorized sign-in to your Cloud account. If this message goes without reply, Apple will be forced to suspend your account. Please verify this iCloud device by sending your correct Apple ID and password via text message.",
+      "keyword": "reply",
+      "start": 95,
+      "end": 100
+    },
+    {
+      "idx": 1851,
+      "id": "augmented_215",
+      "text": "URGENT NOTICE: You have been selected as the winner of our exclusive draw! Claim your guaranteed \u00a3800 prize by calling 09050000460 now. Reference J89. Time-sensitive!",
+      "keyword": "Claim",
+      "start": 75,
+      "end": 80
+    },
+    {
+      "idx": 1857,
+      "id": "mendeley_350",
+      "text": "Today's Offer! Claim ur \u00a3150 worth of discount vouchers! Text YES to 85023 now! SavaMob, member offers mobile! T Cs 08717898035. \u00a33.00 Sub. 16 . Unsub reply X",
+      "keyword": "Claim",
+      "start": 15,
+      "end": 20
+    },
+    {
+      "idx": 1860,
+      "id": "mendeley_146",
+      "text": "Hi, this is Mandy Sullivan calling from HOTMIX FM...you are chosen to receive \u00a35000.00 in our Easter Prize draw.....Please telephone 09041940223 to claim before 29/03/05 or your prize will be transferred to someone else....",
+      "keyword": "claim",
+      "start": 148,
+      "end": 153
+    },
+    {
+      "idx": 1867,
+      "id": "augmented_165",
+      "text": "Congratulations! You\u2019ve been selected for an exclusive giveaway from XYZ Bank. Claim your $5,000 cash prize by calling 1-800-555-0199 today!",
+      "keyword": "Claim",
+      "start": 79,
+      "end": 84
+    },
+    {
+      "idx": 1876,
+      "id": "mendeley_206",
+      "text": "Congratulations YOU'VE Won. You're a Winner in our August \u00a31000 Prize Draw. Call 09066660100 NOW. Prize Code 2309.",
+      "keyword": "Call",
+      "start": 76,
+      "end": 80
+    },
+    {
+      "idx": 1883,
+      "id": "mendeley_466",
+      "text": "Missed call alert. These numbers called but left no message. 07008009200",
+      "keyword": "call",
+      "start": 7,
+      "end": 11
+    },
+    {
+      "idx": 1896,
+      "id": "augmented_38",
+      "text": "Congratulations! Your recent online shopping activity with ShopSmart has earned you a $500 gift card. Claim it now by texting \"CLAIM\" to 555-0199!",
+      "keyword": "Claim",
+      "start": 102,
+      "end": 107
+    },
+    {
+      "idx": 1925,
+      "id": "mendeley_13",
+      "text": "Please CALL 08712402779 immediately as there is an urgent message waiting for you",
+      "keyword": "CALL",
+      "start": 7,
+      "end": 11
+    },
+    {
+      "idx": 1955,
+      "id": "mendeley_285",
+      "text": "Congratulations!!! You are Due for a COVID-19 Grant, To Redeem,Contact us Via Email: covid19grant@cokegrant.com",
+      "keyword": "Redeem",
+      "start": 56,
+      "end": 62
+    },
+    {
+      "idx": 1961,
+      "id": "mendeley_228",
+      "text": "You have been specially selected to receive a \"3000 award! Call 08712402050 BEFORE the lines close. Cost 10ppm. 16+. T&Cs apply. AG Promo",
+      "keyword": "Call",
+      "start": 59,
+      "end": 63
+    },
+    {
+      "idx": 1975,
+      "id": 10012,
+      "text": "Amazon Gift: You won a $500 certificate! Claim within 24 hours.",
+      "keyword": "Claim",
+      "start": 41,
+      "end": 46
+    }
+  ]
+}

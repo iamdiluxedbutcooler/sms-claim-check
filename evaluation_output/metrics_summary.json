@@ -1,0 +1,95 @@
+{
+  "statistics": {
+    "total_messages": 400,
+    "total_gt_claims": 618,
+    "total_pred_claims": 599,
+    "messages_with_claims_gt": 200,
+    "messages_with_claims_pred": 204,
+    "perfect_matches": 306,
+    "overall_precision": 0.788,
+    "overall_recall": 0.764,
+    "overall_f1": 0.776,
+    "avg_claims_per_message_gt": 1.54,
+    "avg_claims_per_message_pred": 1.5
+  },
+  "per_type_metrics": {
+    "FINANCIAL_CLAIM": {
+      "true_positives": 35,
+      "false_positives": 15,
+      "false_negatives": 15,
+      "precision": 0.7,
+      "recall": 0.7,
+      "f1_score": 0.7,
+      "support": 50
+    },
+    "OTHER_CLAIM": {
+      "true_positives": 31,
+      "false_positives": 17,
+      "false_negatives": 33,
+      "precision": 0.646,
+      "recall": 0.484,
+      "f1_score": 0.554,
+      "support": 64
+    },
+    "URGENCY_CLAIM": {
+      "true_positives": 93,
+      "false_positives": 35,
+      "false_negatives": 31,
+      "precision": 0.727,
+      "recall": 0.75,
+      "f1_score": 0.738,
+      "support": 124
+    },
+    "ACTION_CLAIM": {
+      "true_positives": 150,
+      "false_positives": 44,
+      "false_negatives": 37,
+      "precision": 0.773,
+      "recall": 0.802,
+      "f1_score": 0.787,
+      "support": 187
+    },
+    "REWARD_CLAIM": {
+      "true_positives": 115,
+      "false_positives": 8,
+      "false_negatives": 16,
+      "precision": 0.935,
+      "recall": 0.878,
+      "f1_score": 0.906,
+      "support": 131
+    },
+    "DELIVERY_CLAIM": {
+      "true_positives": 11,
+      "false_positives": 8,
+      "false_negatives": 10,
+      "precision": 0.579,
+      "recall": 0.524,
+      "f1_score": 0.55,
+      "support": 21
+    },
+    "ACCOUNT_CLAIM": {
+      "true_positives": 17,
+      "false_positives": 4,
+      "false_negatives": 2,
+      "precision": 0.81,
+      "recall": 0.895,
+      "f1_score": 0.85,
+      "support": 19
+    },
+    "VERIFICATION_CLAIM": {
+      "true_positives": 11,
+      "false_positives": 5,
+      "false_negatives": 11,
+      "precision": 0.688,
+      "recall": 0.5,
+      "f1_score": 0.579,
+      "support": 22
+    }
+  },
+  "error_counts": {
+    "false_positives": 70,
+    "false_negatives": 89,
+    "boundary_errors": 138,
+    "type_confusions": 75
+  }
+}

@@ -1,6 +1,6 @@
 # Data Integrity Verification Report
 
-**Date:** November 17, 2025  
+**Date:** November 17, 2025 
 **Verification Script:** `scripts/verify_annotation_integrity.py`
 
 ---
@@ -26,7 +26,7 @@
 
 ```
 [ENTITY] Exact matches: 638/638 (100.0%)
-[CLAIM]  Exact matches: 638/638 (100.0%)
+[CLAIM] Exact matches: 638/638 (100.0%)
 [OK] All entity texts match exactly!
 [OK] All claim texts match exactly!
 ```
@@ -48,13 +48,13 @@
 ```python
 Text: "...citizens are entitled to £305.96 or more..."
 GPT-4o says: start=91, end=98, text="£305.96"
-Actual slice [91:98]: "e entit"  # WRONG!
+Actual slice [91:98]: "e entit" # WRONG!
 Correct offsets: Need to search for "£305.96" in text
 ```
 
 ### Impact Assessment
 
-**✅ NO IMPACT ON TRAINING:**
+** NO IMPACT ON TRAINING:**
 - The **actual extracted text is correct** (e.g., "£305.96", "smsg.io/fCVbD")
 - The **labels are correct** (AMOUNT, URL, etc.)
 - Only the **numeric offsets are wrong**
@@ -69,8 +69,8 @@ Correct offsets: Need to search for "£305.96" in text
 **Option 1: Use text-based matching (RECOMMENDED)**
 ```python
 # Instead of using start/end offsets:
-text = result['value']['text']  # "£305.96"
-label = result['value']['labels'][0]  # "AMOUNT"
+text = result['value']['text'] # "£305.96"
+label = result['value']['labels'][0] # "AMOUNT"
 
 # Find correct position:
 start = message.find(text)
@@ -87,7 +87,7 @@ end = start + len(text)
 
 ---
 
-## 📊 Coverage Statistics
+## Coverage Statistics
 
 ### Raw Dataset
 - **Total messages**: 5,971 SMS messages
@@ -102,38 +102,38 @@ end = start + len(text)
 
 ---
 
-## 🔍 Quality Indicators
+## Quality Indicators
 
 ### Text Preservation
-- ✅ **0 modifications** to original text
-- ✅ **0 hallucinated messages**
-- ✅ **0 truncated messages**
-- ✅ **0 encoding errors**
+- **0 modifications** to original text
+- **0 hallucinated messages**
+- **0 truncated messages**
+- **0 encoding errors**
 
 ### Annotation Quality
-- ✅ **3,141 entities extracted** (4.95 avg per message)
-- ✅ **1,833 claims extracted** (2.89 avg per message)
-- ⚠️ **Span offsets incorrect** (but text is correct)
-- ✅ **Label quality**: High (verified in EDA)
+- **3,141 entities extracted** (4.95 avg per message)
+- **1,833 claims extracted** (2.89 avg per message)
+- **Span offsets incorrect** (but text is correct)
+- **Label quality**: High (verified in EDA)
 
 ---
 
-## ✅ VERDICT: SAFE TO TRAIN
+## VERDICT: SAFE TO TRAIN
 
 ### Recommendation
 
 **Proceed with training immediately.** The data integrity is excellent:
 
-1. ✅ **No text modifications** - GPT-4o preserved all original content
-2. ✅ **No hallucinations** - All annotations map to real messages
-3. ✅ **Complete coverage** - All 638 messages successfully annotated
-4. ⚠️ **Span offset issue** - Non-blocking (use text-based matching)
+1. **No text modifications** - GPT-4o preserved all original content
+2. **No hallucinations** - All annotations map to real messages
+3. **Complete coverage** - All 638 messages successfully annotated
+4. **Span offset issue** - Non-blocking (use text-based matching)
 
 ### Action Items
 
 **Before Training:**
-- [x] Verify text integrity ✅
-- [x] Check for hallucinations ✅
+- [x] Verify text integrity 
+- [x] Check for hallucinations 
 - [ ] Optional: Fix span offsets (can do post-training)
 
 **Training Pipeline:**
@@ -147,7 +147,7 @@ end = start + len(text)
 
 ---
 
-## 🔧 Using the Verification Script
+## Using the Verification Script
 
 ```bash
 # Run integrity check
@@ -155,25 +155,25 @@ python scripts/verify_annotation_integrity.py
 
 # Check specific files
 python scripts/verify_annotation_integrity.py \
-    --raw data/raw/mendeley.csv \
-    --entity data/annotations/entity_annotations.json \
-    --claim data/annotations/claim_annotations.json
+ --raw data/raw/mendeley.csv \
+ --entity data/annotations/entity_annotations.json \
+ --claim data/annotations/claim_annotations.json
 
 # Output saved to:
-#   data/eda/integrity_report.json
+# data/eda/integrity_report.json
 ```
 
 ---
 
-## 📝 Conclusion
+## Conclusion
 
 **The annotations are safe and ready for training.** 
 
 GPT-4o performed its primary task correctly:
-- ✅ Identified entities and claims accurately
-- ✅ Preserved original text without modification
-- ✅ Generated correct labels
-- ⚠️ Minor technical issue with offset calculation (non-blocking)
+- Identified entities and claims accurately
+- Preserved original text without modification
+- Generated correct labels
+- Minor technical issue with offset calculation (non-blocking)
 
 The span offset issue is a known GPT-4o limitation but does not affect NER model training since we use tokenized text representations, not raw character offsets.
 

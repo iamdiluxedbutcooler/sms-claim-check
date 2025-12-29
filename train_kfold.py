@@ -56,7 +56,7 @@ class KFoldModelTrainer:
         logger.info(f"Config: {self.config_path}")
         logger.info(f"Number of Folds: {self.n_folds}")
         logger.info(f"Output: {self.output_dir}")
-        logger.info(f"\n⚠️  Test set will remain BLIND until final evaluation")
+        logger.info(f"\nWARNING: Test set will remain BLIND until final evaluation")
     
     def _load_config(self) -> dict:
         with open(self.config_path, 'r') as f:
@@ -216,7 +216,7 @@ class KFoldModelTrainer:
         logger.info("\n" + "="*70)
         logger.info("Final Evaluation on BLIND Test Set")
         logger.info("="*70)
-        logger.info("⚠️  This is the first time models see the test data!")
+        logger.info("WARNING: This is the first time models see the test data!")
         
         # Preprocess test data
         approach = self.config['approach']

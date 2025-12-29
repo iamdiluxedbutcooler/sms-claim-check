@@ -1,0 +1,161 @@
+================================================================================
+MODEL EVALUATION REPORT
+================================================================================
+
+OVERALL STATISTICS
+--------------------------------------------------------------------------------
+Total test messages: 400
+Total ground truth claims: 618
+Total predicted claims: 599
+Perfect matches (exact count): 306 (76.5%)
+
+Messages with claims (GT): 200
+Messages with claims (Pred): 204
+Avg claims per message (GT): 1.54
+Avg claims per message (Pred): 1.5
+
+OVERALL METRICS
+--------------------------------------------------------------------------------
+Precision: 0.788
+Recall:    0.764
+F1 Score:  0.776
+
+PER-TYPE METRICS
+--------------------------------------------------------------------------------
+Type                      Precision    Recall       F1           Support   
+--------------------------------------------------------------------------------
+ACCOUNT_CLAIM             0.810        0.895        0.850        19        
+ACTION_CLAIM              0.773        0.802        0.787        187       
+DELIVERY_CLAIM            0.579        0.524        0.550        21        
+FINANCIAL_CLAIM           0.700        0.700        0.700        50        
+OTHER_CLAIM               0.646        0.484        0.554        64        
+REWARD_CLAIM              0.935        0.878        0.906        131       
+URGENCY_CLAIM             0.727        0.750        0.738        124       
+VERIFICATION_CLAIM        0.688        0.500        0.579        22        
+
+ERROR ANALYSIS
+--------------------------------------------------------------------------------
+Total false positives: 70
+Total false negatives: 89
+Total boundary errors: 138
+
+TYPE CONFUSION MATRIX
+--------------------------------------------------------------------------------
+(GT Type -> Predicted Type : Count)
+
+  ACCOUNT_CLAIM -> OTHER_CLAIM: 1
+  ACCOUNT_CLAIM -> REWARD_CLAIM: 1
+  ACCOUNT_CLAIM -> URGENCY_CLAIM: 1
+  ACTION_CLAIM -> URGENCY_CLAIM: 9
+  ACTION_CLAIM -> VERIFICATION_CLAIM: 3
+  ACTION_CLAIM -> FINANCIAL_CLAIM: 2
+  ACTION_CLAIM -> REWARD_CLAIM: 2
+  DELIVERY_CLAIM -> URGENCY_CLAIM: 5
+  DELIVERY_CLAIM -> REWARD_CLAIM: 2
+  DELIVERY_CLAIM -> ACTION_CLAIM: 1
+  FINANCIAL_CLAIM -> ACTION_CLAIM: 2
+  FINANCIAL_CLAIM -> REWARD_CLAIM: 1
+  FINANCIAL_CLAIM -> ACCOUNT_CLAIM: 1
+  FINANCIAL_CLAIM -> DELIVERY_CLAIM: 1
+  OTHER_CLAIM -> ACTION_CLAIM: 3
+  OTHER_CLAIM -> FINANCIAL_CLAIM: 2
+  OTHER_CLAIM -> DELIVERY_CLAIM: 2
+  OTHER_CLAIM -> URGENCY_CLAIM: 2
+  REWARD_CLAIM -> FINANCIAL_CLAIM: 4
+  REWARD_CLAIM -> DELIVERY_CLAIM: 2
+  REWARD_CLAIM -> OTHER_CLAIM: 1
+  REWARD_CLAIM -> ACTION_CLAIM: 1
+  REWARD_CLAIM -> URGENCY_CLAIM: 1
+  REWARD_CLAIM -> ACCOUNT_CLAIM: 1
+  URGENCY_CLAIM -> ACTION_CLAIM: 16
+  URGENCY_CLAIM -> OTHER_CLAIM: 1
+  URGENCY_CLAIM -> ACCOUNT_CLAIM: 1
+  VERIFICATION_CLAIM -> ACTION_CLAIM: 3
+  VERIFICATION_CLAIM -> OTHER_CLAIM: 2
+  VERIFICATION_CLAIM -> ACCOUNT_CLAIM: 1
+
+SAMPLE FALSE POSITIVES (First 10)
+--------------------------------------------------------------------------------
+1. Type: FINANCIAL_CLAIM, Confidence: 0.822
+   Claim: "Loan"
+   Context: "Loan  INR5,00,000 - 7,50,000. Homeowners + Tenants welcome. Have you been previously refused? We can..."
+
+2. Type: URGENCY_CLAIM, Confidence: 0.712
+   Claim: "WELL DONE!"
+   Context: "WELL DONE! Your 4* Costa Del Sol Holiday or £5000 await collection. Call 09050090044 Now toClaim. SA..."
+
+3. Type: URGENCY_CLAIM, Confidence: 0.750
+   Claim: "URGENT!"
+   Context: "URGENT! Your Mobile No 07808726822 was awarded a £2,000 Bonus Caller Prize on 02/09/03! This is our ..."
+
+4. Type: FINANCIAL_CLAIM, Confidence: 0.662
+   Claim: "Rental"
+   Context: "We tried to contact you re our offer of New Video Phone 750 anytime any network mins HALF PRICE Rent..."
+
+5. Type: DELIVERY_CLAIM, Confidence: 0.915
+   Claim: "a luxury 4* Canary Islands Holiday await collection"
+   Context: "Urgent! Please call 09061213237 from landline. £5000 cash or a luxury 4* Canary Islands Holiday awai..."
+
+6. Type: ACTION_CLAIM, Confidence: 0.925
+   Claim: "Call me 09094646631"
+   Context: "I'd like to tell you my deepest darkest fantasies. Call me 09094646631 just 60p/min. To stop texts c..."
+
+7. Type: ACTION_CLAIM, Confidence: 0.986
+   Claim: "To stop texts call 08712460324"
+   Context: "I'd like to tell you my deepest darkest fantasies. Call me 09094646631 just 60p/min. To stop texts c..."
+
+8. Type: URGENCY_CLAIM, Confidence: 0.976
+   Claim: "Happy "VALENTINES DAY" in advance"
+   Context: "V-aluable. A-ffectionate. L-oveable. E-ternal. N-oble. T-ruthful. I-ntimate. N-atural. E-namous. Hap..."
+
+9. Type: URGENCY_CLAIM, Confidence: 0.974
+   Claim: "Today's Offer!"
+   Context: "Today's Offer! Claim ur £150 worth of discount vouchers! Text YES to 85023 now! SavaMob, member offe..."
+
+10. Type: OTHER_CLAIM, Confidence: 0.919
+   Claim: "T&Cs apply."
+   Context: "You have been specially selected to receive a 2000 pound award! Call 08712402050 BEFORE the lines cl..."
+
+SAMPLE FALSE NEGATIVES (First 10)
+--------------------------------------------------------------------------------
+1. Type: OTHER_CLAIM
+   Missed claim: "Bored housewives!"
+   Context: "Bored housewives! Chat n date now! 0871750.77.11! BT-national rate 10p/min only from landlines!..."
+
+2. Type: FINANCIAL_CLAIM
+   Missed claim: "BT-national rate 10p/min only from landlines!"
+   Context: "Bored housewives! Chat n date now! 0871750.77.11! BT-national rate 10p/min only from landlines!..."
+
+3. Type: OTHER_CLAIM
+   Missed claim: "18+"
+   Context: "You have won a guaranteed £200 award or even £1000 cashto claim UR award call free on 08000407166 (1..."
+
+4. Type: URGENCY_CLAIM
+   Missed claim: "to avoid missing out"
+   Context: "Dear Valued Voucher Holder, your exclusive offer is ready to be claimed! Please visit http://www.e-t..."
+
+5. Type: REWARD_CLAIM
+   Missed claim: "our computer has picked YOU to win a £550 prize"
+   Context: "YOU HAVE WON! As a valued Vodafone customer our computer has picked YOU to win a £550 prize. To coll..."
+
+6. Type: OTHER_CLAIM
+   Missed claim: "Apple"
+   Context: "Apple: Purchase of $999 unsuccessful. Review payment info...."
+
+7. Type: ACTION_CLAIM
+   Missed claim: "Review payment info"
+   Context: "Apple: Purchase of $999 unsuccessful. Review payment info...."
+
+8. Type: OTHER_CLAIM
+   Missed claim: "T Cs 08717898036."
+   Context: "Today's Offer! Claim ur £150 worth of discount vouchers! Text YES to 85023 now! SavaMob, member offe..."
+
+9. Type: VERIFICATION_CLAIM
+   Missed claim: "http://secure.gommbanklogin.netbank.com"
+   Context: "Your account has been charged AUD 590.30 on 08/02/17 at 11:17:37. If this transaction was not author..."
+
+10. Type: REWARD_CLAIM
+   Missed claim: "free iPhone 12"
+   Context: "Congratulations! You’ve won a free iPhone 12. Claim it now...."
+
+================================================================================

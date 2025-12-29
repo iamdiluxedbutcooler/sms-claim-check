@@ -1,0 +1,13 @@
+{
+  "total_messages": 2000,
+  "phishing_messages": 1000,
+  "ham_messages": 1000,
+  "original_phishing": 562,
+  "augmented_phishing": 438,
+  "balance_ratio": "1000:1000",
+  "generation_date": "2025-12-05T23:07:44.393522",
+  "source_files": {
+    "phishing": "data/annotations/augmented_phishing_1000.json",
+    "ham": "data/raw/mendeley.csv"
+  }
+}

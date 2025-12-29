@@ -154,7 +154,7 @@ class AnnotationLoader:
             logger.info(f"  Train: {len(train_msgs)} messages (use get_kfold_splits for CV)")
             logger.info(f"  Val:   NONE (use K-fold cross-validation)")
             logger.info(f"  Test:  {len(test_msgs)} messages (BLIND - only for final evaluation)")
-            logger.info(f"\n  ⚠️  Test set is UNTOUCHED during training/validation")
+            logger.info(f"\n  WARNING: Test set is UNTOUCHED during training/validation")
         
         else:
             # Fallback to random split
