@@ -112,7 +112,7 @@ def analyze_annotation_quality(json_file):
     rare_claims = [(ct, cnt) for ct, cnt in claim_type_counts.items() if cnt < 50]
     if rare_claims:
         for claim_type, count in sorted(rare_claims, key=lambda x: x[1]):
-            print(f"  {claim_type:25} : {count:4} instances ⚠️")
+            print(f"  {claim_type:25} : {count:4} instances [WARN]")
     else:
         print("  None - all claim types have sufficient data")
     
@@ -125,7 +125,7 @@ def analyze_annotation_quality(json_file):
         avg_len = sum(lengths) / len(lengths)
         
         if min_len < 3 or max_len > 100:
-            print(f"  {claim_type:25} : min={min_len:3} max={max_len:3} avg={avg_len:5.1f} ⚠️")
+            print(f"  {claim_type:25} : min={min_len:3} max={max_len:3} avg={avg_len:5.1f} [WARN]")
     
     # Overall assessment
     print(f"\n" + "="*70)
@@ -135,20 +135,20 @@ def analyze_annotation_quality(json_file):
     issues = []
     
     if ham_messages < total_messages * 0.3:
-        issues.append(f"⚠️  Low HAM ratio ({ham_messages/total_messages*100:.1f}%) - may bias model")
+        issues.append(f"[WARN]  Low HAM ratio ({ham_messages/total_messages*100:.1f}%) - may bias model")
     
     if span_overlaps > 0:
-        issues.append(f"⚠️  {span_overlaps} overlapping spans - will confuse NER model")
+        issues.append(f"[WARN]  {span_overlaps} overlapping spans - will confuse NER model")
     
     if inconsistent_boundaries > 0:
-        issues.append(f"⚠️  {inconsistent_boundaries} boundary mismatches - annotation errors")
+        issues.append(f"[WARN]  {inconsistent_boundaries} boundary mismatches - annotation errors")
     
     rare_count = len(rare_claims)
     if rare_count > 0:
-        issues.append(f"⚠️  {rare_count} claim types with <50 instances - insufficient training data")
+        issues.append(f"[WARN]  {rare_count} claim types with <50 instances - insufficient training data")
     
     if not issues:
-        print("✅ Dataset quality is GOOD - ready for training!")
+        print("[OK] Dataset quality is GOOD - ready for training!")
     else:
         print("Dataset has the following issues:")
         for issue in issues:

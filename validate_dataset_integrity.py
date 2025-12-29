@@ -28,11 +28,11 @@ def check_duplicates(data, dataset_name):
     duplicate_ids = {id_: count for id_, count in id_counts.items() if count > 1}
     
     if duplicate_ids:
-        print(f"❌ Found {len(duplicate_ids)} duplicate IDs:")
+        print(f"[ERROR] Found {len(duplicate_ids)} duplicate IDs:")
         for id_, count in duplicate_ids.items():
             print(f"   - ID '{id_}' appears {count} times")
     else:
-        print(f"✅ No duplicate IDs found ({len(ids)} unique IDs)")
+        print(f"[OK] No duplicate IDs found ({len(ids)} unique IDs)")
     
     # Check duplicate message texts
     texts = [entry.get('data', {}).get('text', '').strip() for entry in data]
@@ -40,14 +40,14 @@ def check_duplicates(data, dataset_name):
     duplicate_texts = {text: count for text, count in text_counts.items() if count > 1 and text}
     
     if duplicate_texts:
-        print(f"\n❌ Found {len(duplicate_texts)} duplicate message texts:")
+        print(f"\n[ERROR] Found {len(duplicate_texts)} duplicate message texts:")
         for i, (text, count) in enumerate(list(duplicate_texts.items())[:5]):
             preview = text[:60] + '...' if len(text) > 60 else text
             print(f"   {i+1}. '{preview}' ({count} times)")
         if len(duplicate_texts) > 5:
             print(f"   ... and {len(duplicate_texts) - 5} more")
     else:
-        print(f"✅ No duplicate message texts found ({len([t for t in texts if t])} unique messages)")
+        print(f"[OK] No duplicate message texts found ({len([t for t in texts if t])} unique messages)")
     
     return {
         'duplicate_ids': duplicate_ids,
@@ -147,7 +147,7 @@ def compare_with_original(claim_data, entity_data, original_data):
     print(f"  - Augmented entries: {claim_augmented}")
     print(f"  - Original entries matched: {claim_matched}")
     if claim_issues:
-        print(f"  ❌ Found {len(claim_issues)} integrity issues:")
+        print(f"  [ERROR] Found {len(claim_issues)} integrity issues:")
         for issue in claim_issues[:3]:
             print(f"     - {issue['id']}: {issue['issue']}")
             print(f"       Expected: '{issue['expected']}'...")
@@ -155,13 +155,13 @@ def compare_with_original(claim_data, entity_data, original_data):
         if len(claim_issues) > 3:
             print(f"     ... and {len(claim_issues) - 3} more")
     else:
-        print(f"  ✅ No integrity issues found")
+        print(f"  [OK] No integrity issues found")
     
     print(f"\nEntity Annotations:")
     print(f"  - Augmented entries: {entity_augmented}")
     print(f"  - Original entries matched: {entity_matched}")
     if entity_issues:
-        print(f"  ❌ Found {len(entity_issues)} integrity issues:")
+        print(f"  [ERROR] Found {len(entity_issues)} integrity issues:")
         for issue in entity_issues[:3]:
             print(f"     - {issue['id']}: {issue['issue']}")
             print(f"       Expected: '{issue['expected']}'...")
@@ -169,7 +169,7 @@ def compare_with_original(claim_data, entity_data, original_data):
         if len(entity_issues) > 3:
             print(f"     ... and {len(entity_issues) - 3} more")
     else:
-        print(f"  ✅ No integrity issues found")
+        print(f"  [OK] No integrity issues found")
     
     return {
         'claim_issues': claim_issues,
@@ -196,9 +196,9 @@ def cross_check_datasets(claim_data, entity_data):
     claim_only = set(claim_map.keys()) - set(entity_map.keys())
     entity_only = set(entity_map.keys()) - set(claim_map.keys())
     
-    print(f"\n✅ Common IDs: {len(common_ids)}")
-    print(f"⚠️  Claim-only IDs: {len(claim_only)}")
-    print(f"⚠️  Entity-only IDs: {len(entity_only)}")
+    print(f"\n[OK] Common IDs: {len(common_ids)}")
+    print(f"[WARN]  Claim-only IDs: {len(claim_only)}")
+    print(f"[WARN]  Entity-only IDs: {len(entity_only)}")
     
     # Check if texts match for common IDs
     mismatches = []
@@ -211,7 +211,7 @@ def cross_check_datasets(claim_data, entity_data):
             })
     
     if mismatches:
-        print(f"\n❌ Found {len(mismatches)} text mismatches between datasets:")
+        print(f"\n[ERROR] Found {len(mismatches)} text mismatches between datasets:")
         for mismatch in mismatches[:3]:
             print(f"   ID '{mismatch['id']}':")
             print(f"     Claim:  '{mismatch['claim_text']}'...")
@@ -219,7 +219,7 @@ def cross_check_datasets(claim_data, entity_data):
         if len(mismatches) > 3:
             print(f"   ... and {len(mismatches) - 3} more")
     else:
-        print(f"\n✅ All common IDs have matching texts")
+        print(f"\n[OK] All common IDs have matching texts")
     
     return {
         'common_ids': len(common_ids),
@@ -276,20 +276,20 @@ def check_annotation_validity(data, dataset_name):
     print(f"Total annotations: {total_annotations}")
     
     if issues:
-        print(f"❌ Found {len(issues)} structural issues:")
+        print(f"[ERROR] Found {len(issues)} structural issues:")
         for issue in issues[:5]:
             print(f"   - {issue['id']}: {issue['issue']}")
         if len(issues) > 5:
             print(f"   ... and {len(issues) - 5} more")
     else:
-        print(f"✅ All annotations have valid structure")
+        print(f"[OK] All annotations have valid structure")
     
     return issues
 
 def main():
     base_path = Path(__file__).parent
     
-    print("🔍 DATASET INTEGRITY VALIDATION")
+    print(" DATASET INTEGRITY VALIDATION")
     print("="*60)
     
     # Load datasets
@@ -299,24 +299,24 @@ def main():
     original_path = base_path / 'data' / 'annotations' / 'balanced_dataset_2000.json'
     
     if not claim_path.exists():
-        print(f"❌ Error: {claim_path} not found")
+        print(f"[ERROR] Error: {claim_path} not found")
         return
     
     if not entity_path.exists():
-        print(f"❌ Error: {entity_path} not found")
+        print(f"[ERROR] Error: {entity_path} not found")
         return
     
     if not original_path.exists():
-        print(f"❌ Error: {original_path} not found")
+        print(f"[ERROR] Error: {original_path} not found")
         return
     
     claim_data = load_json(claim_path)
     entity_data = load_json(entity_path)
     original_data = load_json(original_path)
     
-    print(f"✅ Loaded claim_annotations_2000.json ({len(claim_data)} entries)")
-    print(f"✅ Loaded entity_annotations_2000.json ({len(entity_data)} entries)")
-    print(f"✅ Loaded balanced_dataset_2000.json ({len(original_data)} entries)")
+    print(f"[OK] Loaded claim_annotations_2000.json ({len(claim_data)} entries)")
+    print(f"[OK] Loaded entity_annotations_2000.json ({len(entity_data)} entries)")
+    print(f"[OK] Loaded balanced_dataset_2000.json ({len(original_data)} entries)")
     
     # Run checks
     results = {}
@@ -343,46 +343,46 @@ def main():
     total_issues = 0
     
     if results['claim_duplicates']['duplicate_ids'] or results['claim_duplicates']['duplicate_texts']:
-        print("❌ Claim dataset has duplicates")
+        print("[ERROR] Claim dataset has duplicates")
         total_issues += 1
     else:
-        print("✅ Claim dataset: No duplicates")
+        print("[OK] Claim dataset: No duplicates")
     
     if results['entity_duplicates']['duplicate_ids'] or results['entity_duplicates']['duplicate_texts']:
-        print("❌ Entity dataset has duplicates")
+        print("[ERROR] Entity dataset has duplicates")
         total_issues += 1
     else:
-        print("✅ Entity dataset: No duplicates")
+        print("[OK] Entity dataset: No duplicates")
     
     if results['claim_structure']:
-        print(f"❌ Claim dataset: {len(results['claim_structure'])} structural issues")
+        print(f"[ERROR] Claim dataset: {len(results['claim_structure'])} structural issues")
         total_issues += 1
     else:
-        print("✅ Claim dataset: Valid structure")
+        print("[OK] Claim dataset: Valid structure")
     
     if results['entity_structure']:
-        print(f"❌ Entity dataset: {len(results['entity_structure'])} structural issues")
+        print(f"[ERROR] Entity dataset: {len(results['entity_structure'])} structural issues")
         total_issues += 1
     else:
-        print("✅ Entity dataset: Valid structure")
+        print("[OK] Entity dataset: Valid structure")
     
     if results['integrity']['claim_issues'] or results['integrity']['entity_issues']:
-        print(f"❌ Data integrity issues found")
+        print(f"[ERROR] Data integrity issues found")
         total_issues += 1
     else:
-        print("✅ Data integrity: All original texts preserved")
+        print("[OK] Data integrity: All original texts preserved")
     
     if results['cross_check']['mismatches']:
-        print(f"❌ Cross-check: {len(results['cross_check']['mismatches'])} mismatches")
+        print(f"[ERROR] Cross-check: {len(results['cross_check']['mismatches'])} mismatches")
         total_issues += 1
     else:
-        print("✅ Cross-check: Datasets are consistent")
+        print("[OK] Cross-check: Datasets are consistent")
     
     print(f"\n{'='*60}")
     if total_issues == 0:
-        print("🎉 ALL CHECKS PASSED! Datasets are clean and valid.")
+        print(" ALL CHECKS PASSED! Datasets are clean and valid.")
     else:
-        print(f"⚠️  Found {total_issues} categories of issues to review.")
+        print(f"[WARN]  Found {total_issues} categories of issues to review.")
     print('='*60)
 
 if __name__ == '__main__':

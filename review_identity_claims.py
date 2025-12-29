@@ -121,7 +121,7 @@ class IdentityClaimReviewer:
         
         if self.current_index >= len(self.claims_to_review):
             # All done!
-            title = FONT_LARGE.render("All Claims Reviewed! 🎉", True, ACCENT_COLOR)
+            title = FONT_LARGE.render("All Claims Reviewed! ", True, ACCENT_COLOR)
             self.screen.blit(title, (WINDOW_WIDTH // 2 - title.get_width() // 2, 100))
             
             accepted = sum(1 for d in self.decisions.values() if d['action'] == 'accept')
@@ -324,7 +324,7 @@ class IdentityClaimReviewer:
         rejected = sum(1 for d in self.decisions.values() if d['action'] == 'reject')
         edited = sum(1 for d in self.decisions.values() if d['action'] == 'edit')
         
-        print(f"\n✅ Changes saved!")
+        print(f"\n[OK] Changes saved!")
         print(f"   Accepted: {accepted}")
         print(f"   Edited: {edited}")
         print(f"   Rejected: {rejected}")

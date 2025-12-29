@@ -78,3 +78,4 @@ models/*.h5
 tmp/
 temp/
 *.tmp
+*.zip
