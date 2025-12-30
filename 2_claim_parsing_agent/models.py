@@ -31,6 +31,7 @@ class ParsedClaim:
     claim_type: str
     canonical_form: str
     slots: dict[str, str | int | float | None] = field(default_factory=dict)
+    claim_text: str = ""
 
 
 @dataclass

@@ -12,14 +12,15 @@ CLAIM_ANNOTATIONS_FILE = ANNOTATIONS_DIR / "claim_annotations_2000_reviewed.json
 
 # Parsed claim data paths
 CLAIM_PARSING_ALL = ANNOTATIONS_DIR / "claim_parsing_all_2000.json"
-CLAIM_PARSING_TRAIN = ANNOTATIONS_DIR / "claim_parsing_train_2651.json"
-CLAIM_PARSING_TEST = ANNOTATIONS_DIR / "claim_parsing_test_670.json"
+CLAIM_PARSING_TRAIN = ANNOTATIONS_DIR / "claim_parsing_train_full.json"
+CLAIM_PARSING_TEST = ANNOTATIONS_DIR / "claim_parsing_test_full.json"
+SPLIT_INFO = ANNOTATIONS_DIR / "split_info.json"
 
 
 @dataclass
 class ParsingConfig:
     openai_api_key: str = os.getenv("OPENAI_API_KEY", "")
-    openai_model: str = "gpt-4o-mini"
+    openai_model: str = "gpt-4o"
     openai_max_tokens: int = 2000
     openai_temperature: float = 0.0
     

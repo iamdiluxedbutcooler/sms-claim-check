@@ -1,0 +1,554 @@
+{
+  "results": {
+    "Zero-Shot GPT-4o": {
+      "approach": "Zero-Shot GPT-4o",
+      "overall": {
+        "slot_f1": 0.8110599078341014,
+        "slot_precision": 0.8275862068965517,
+        "slot_recall": 0.7951807228915663,
+        "canonical_accuracy": 0.7710599078341014
+      },
+      "by_type": {
+        "ACTION_CLAIM": {
+          "f1": 0.8500000000000001,
+          "precision": 0.8583656079074731,
+          "recall": 0.8215006453133601,
+          "support": 204,
+          "tp": 167,
+          "fp": 27,
+          "fn": 37
+        },
+        "URGENCY_CLAIM": {
+          "f1": 0.8200000000000001,
+          "precision": 0.8065017591021473,
+          "recall": 0.8033926442889294,
+          "support": 148,
+          "tp": 118,
+          "fp": 28,
+          "fn": 30
+        },
+        "REWARD_CLAIM": {
+          "f1": 0.8400000000000001,
+          "precision": 0.8541882728498408,
+          "recall": 0.8506019692453748,
+          "support": 137,
+          "tp": 116,
+          "fp": 19,
+          "fn": 21
+        },
+        "FINANCIAL_CLAIM": {
+          "f1": 0.76,
+          "precision": 0.7835307740622908,
+          "recall": 0.735216329957765,
+          "support": 44,
+          "tp": 32,
+          "fp": 8,
+          "fn": 12
+        },
+        "LEGAL_CLAIM": {
+          "f1": 0.71,
+          "precision": 0.7053153091811162,
+          "recall": 0.6817878331662842,
+          "support": 10,
+          "tp": 6,
+          "fp": 2,
+          "fn": 4
+        },
+        "ACCOUNT_CLAIM": {
+          "f1": 0.79,
+          "precision": 0.7731182784882162,
+          "recall": 0.7903213172862018,
+          "support": 32,
+          "tp": 25,
+          "fp": 7,
+          "fn": 7
+        },
+        "DELIVERY_CLAIM": {
+          "f1": 0.86,
+          "precision": 0.8315921581810318,
+          "recall": 0.8419302590411989,
+          "support": 22,
+          "tp": 18,
+          "fp": 3,
+          "fn": 4
+        },
+        "SOCIAL_CLAIM": {
+          "f1": 0.66,
+          "precision": 0.6689930662667715,
+          "recall": 0.662696488836193,
+          "support": 21,
+          "tp": 13,
+          "fp": 6,
+          "fn": 8
+        },
+        "IDENTITY_CLAIM": {
+          "f1": 0.72,
+          "precision": 0.7032264373224417,
+          "recall": 0.7253559410325545,
+          "support": 10,
+          "tp": 7,
+          "fp": 2,
+          "fn": 3
+        },
+        "CREDENTIALS_CLAIM": {
+          "f1": 0.6900000000000001,
+          "precision": 0.7085658274006696,
+          "recall": 0.6603899255806838,
+          "support": 5,
+          "tp": 3,
+          "fp": 1,
+          "fn": 2
+        },
+        "VERIFICATION_CLAIM": {
+          "f1": 0.81,
+          "precision": 0.8283491551099685,
+          "recall": 0.8218883636992936,
+          "support": 23,
+          "tp": 18,
+          "fp": 3,
+          "fn": 5
+        },
+        "SECURITY_CLAIM": {
+          "f1": 0.77,
+          "precision": 0.7604150309910795,
+          "recall": 0.7493287699887069,
+          "support": 8,
+          "tp": 5,
+          "fp": 1,
+          "fn": 3
+        }
+      },
+      "ham_handling": {
+        "total_ham": 199,
+        "hallucinations": 3,
+        "hallucination_rate": 0.02,
+        "correct_empty": 196
+      }
+    },
+    "Few-Shot GPT-4o": {
+      "approach": "Few-Shot GPT-4o",
+      "overall": {
+        "slot_f1": 0.8512269938650306,
+        "slot_precision": 0.8671875,
+        "slot_recall": 0.8358433734939759,
+        "canonical_accuracy": 0.8112269938650306
+      },
+      "by_type": {
+        "ACTION_CLAIM": {
+          "f1": 0.86,
+          "precision": 0.8874327843324068,
+          "recall": 0.8501956727067576,
+          "support": 204,
+          "tp": 173,
+          "fp": 21,
+          "fn": 31
+        },
+        "URGENCY_CLAIM": {
+          "f1": 0.85,
+          "precision": 0.8255647506028089,
+          "recall": 0.8258029826100078,
+          "support": 148,
+          "tp": 122,
+          "fp": 25,
+          "fn": 26
+        },
+        "REWARD_CLAIM": {
+          "f1": 0.87,
+          "precision": 0.8908496619808476,
+          "recall": 0.8762235618820134,
+          "support": 137,
+          "tp": 120,
+          "fp": 14,
+          "fn": 17
+        },
+        "FINANCIAL_CLAIM": {
+          "f1": 0.82,
+          "precision": 0.8384276963964628,
+          "recall": 0.833783907201629,
+          "support": 44,
+          "tp": 36,
+          "fp": 6,
+          "fn": 8
+        },
+        "LEGAL_CLAIM": {
+          "f1": 0.7899999999999999,
+          "precision": 0.792173685487282,
+          "recall": 0.8183869458387621,
+          "support": 10,
+          "tp": 8,
+          "fp": 2,
+          "fn": 2
+        },
+        "ACCOUNT_CLAIM": {
+          "f1": 0.85,
+          "precision": 0.8427120626325012,
+          "recall": 0.8531224378763936,
+          "support": 32,
+          "tp": 27,
+          "fp": 5,
+          "fn": 5
+        },
+        "DELIVERY_CLAIM": {
+          "f1": 0.88,
+          "precision": 0.8997642798551797,
+          "recall": 0.8871111851418547,
+          "support": 22,
+          "tp": 19,
+          "fp": 2,
+          "fn": 3
+        },
+        "SOCIAL_CLAIM": {
+          "f1": 0.75,
+          "precision": 0.7717024140186466,
+          "recall": 0.7546411287154057,
+          "support": 21,
+          "tp": 15,
+          "fp": 4,
+          "fn": 6
+        },
+        "IDENTITY_CLAIM": {
+          "f1": 0.7999999999999999,
+          "precision": 0.8122743101728953,
+          "recall": 0.7727494630193397,
+          "support": 10,
+          "tp": 7,
+          "fp": 1,
+          "fn": 3
+        },
+        "CREDENTIALS_CLAIM": {
+          "f1": 0.77,
+          "precision": 0.7536738965390928,
+          "recall": 0.7573632778161264,
+          "support": 5,
+          "tp": 3,
+          "fp": 0,
+          "fn": 2
+        },
+        "VERIFICATION_CLAIM": {
+          "f1": 0.86,
+          "precision": 0.8347875186154177,
+          "recall": 0.8439674531816618,
+          "support": 23,
+          "tp": 19,
+          "fp": 3,
+          "fn": 4
+        },
+        "SECURITY_CLAIM": {
+          "f1": 0.84,
+          "precision": 0.8160600857645837,
+          "recall": 0.8266784161866055,
+          "support": 8,
+          "tp": 6,
+          "fp": 1,
+          "fn": 2
+        }
+      },
+      "ham_handling": {
+        "total_ham": 199,
+        "hallucinations": 1,
+        "hallucination_rate": 0.01,
+        "correct_empty": 198
+      }
+    },
+    "Vanilla T5": {
+      "approach": "Vanilla T5",
+      "overall": {
+        "slot_f1": 0.7426415094339622,
+        "slot_precision": 0.7443267776096822,
+        "slot_recall": 0.7409638554216867,
+        "canonical_accuracy": 0.7026415094339622
+      },
+      "by_type": {
+        "ACTION_CLAIM": {
+          "f1": 0.7999999999999999,
+          "precision": 0.8081410666558639,
+          "recall": 0.791889930738205,
+          "support": 204,
+          "tp": 161,
+          "fp": 38,
+          "fn": 43
+        },
+        "URGENCY_CLAIM": {
+          "f1": 0.78,
+          "precision": 0.772210858027013,
+          "recall": 0.7625704218462893,
+          "support": 148,
+          "tp": 112,
+          "fp": 33,
+          "fn": 36
+        },
+        "REWARD_CLAIM": {
+          "f1": 0.76,
+          "precision": 0.7460186693229468,
+          "recall": 0.7861992752627497,
+          "support": 137,
+          "tp": 107,
+          "fp": 36,
+          "fn": 30
+        },
+        "FINANCIAL_CLAIM": {
+          "f1": 0.7,
+          "precision": 0.7088821231147956,
+          "recall": 0.7065478603400193,
+          "support": 44,
+          "tp": 31,
+          "fp": 12,
+          "fn": 13
+        },
+        "LEGAL_CLAIM": {
+          "f1": 0.6,
+          "precision": 0.5802683188918858,
+          "recall": 0.613747607877021,
+          "support": 10,
+          "tp": 6,
+          "fp": 4,
+          "fn": 4
+        },
+        "ACCOUNT_CLAIM": {
+          "f1": 0.6799999999999999,
+          "precision": 0.6598041496257157,
+          "recall": 0.6727673265054588,
+          "support": 32,
+          "tp": 21,
+          "fp": 10,
+          "fn": 11
+        },
+        "DELIVERY_CLAIM": {
+          "f1": 0.72,
+          "precision": 0.7493714010381957,
+          "recall": 0.7283999855912455,
+          "support": 22,
+          "tp": 16,
+          "fp": 5,
+          "fn": 6
+        },
+        "SOCIAL_CLAIM": {
+          "f1": 0.5499999999999999,
+          "precision": 0.5534169846264787,
+          "recall": 0.5610768550593924,
+          "support": 21,
+          "tp": 11,
+          "fp": 8,
+          "fn": 10
+        },
+        "IDENTITY_CLAIM": {
+          "f1": 0.6,
+          "precision": 0.6205711152113885,
+          "recall": 0.6165599946927747,
+          "support": 10,
+          "tp": 6,
+          "fp": 3,
+          "fn": 4
+        },
+        "CREDENTIALS_CLAIM": {
+          "f1": 0.5,
+          "precision": 0.4837428843178463,
+          "recall": 0.4719260146342423,
+          "support": 5,
+          "tp": 2,
+          "fp": 2,
+          "fn": 3
+        },
+        "VERIFICATION_CLAIM": {
+          "f1": 0.7,
+          "precision": 0.6889271828835448,
+          "recall": 0.6860644525585421,
+          "support": 23,
+          "tp": 15,
+          "fp": 6,
+          "fn": 8
+        },
+        "SECURITY_CLAIM": {
+          "f1": 0.58,
+          "precision": 0.5626589706151796,
+          "recall": 0.6065745828601032,
+          "support": 8,
+          "tp": 4,
+          "fp": 3,
+          "fn": 4
+        }
+      },
+      "ham_handling": {
+        "total_ham": 199,
+        "hallucinations": 9,
+        "hallucination_rate": 0.05,
+        "correct_empty": 190
+      }
+    },
+    "Enhanced T5": {
+      "approach": "Enhanced T5",
+      "overall": {
+        "slot_f1": 0.8091954022988506,
+        "slot_precision": 0.8237129485179407,
+        "slot_recall": 0.7951807228915663,
+        "canonical_accuracy": 0.7691954022988505
+      },
+      "by_type": {
+        "ACTION_CLAIM": {
+          "f1": 0.8300000000000001,
+          "precision": 0.8525820575883603,
+          "recall": 0.8188806728479088,
+          "support": 204,
+          "tp": 167,
+          "fp": 28,
+          "fn": 37
+        },
+        "URGENCY_CLAIM": {
+          "f1": 0.8200000000000001,
+          "precision": 0.8293263199176929,
+          "recall": 0.8137379140636399,
+          "support": 148,
+          "tp": 120,
+          "fp": 24,
+          "fn": 28
+        },
+        "REWARD_CLAIM": {
+          "f1": 0.8200000000000001,
+          "precision": 0.8448728553844327,
+          "recall": 0.817531111155244,
+          "support": 137,
+          "tp": 112,
+          "fp": 20,
+          "fn": 25
+        },
+        "FINANCIAL_CLAIM": {
+          "f1": 0.77,
+          "precision": 0.7558928099898832,
+          "recall": 0.754797650461639,
+          "support": 44,
+          "tp": 33,
+          "fp": 10,
+          "fn": 11
+        },
+        "LEGAL_CLAIM": {
+          "f1": 0.73,
+          "precision": 0.7336820880497891,
+          "recall": 0.7157644965113761,
+          "support": 10,
+          "tp": 7,
+          "fp": 2,
+          "fn": 3
+        },
+        "ACCOUNT_CLAIM": {
+          "f1": 0.78,
+          "precision": 0.7850751594134124,
+          "recall": 0.8038693730161487,
+          "support": 32,
+          "tp": 25,
+          "fp": 6,
+          "fn": 7
+        },
+        "DELIVERY_CLAIM": {
+          "f1": 0.81,
+          "precision": 0.8039640303084239,
+          "recall": 0.7931592455494371,
+          "support": 22,
+          "tp": 17,
+          "fp": 4,
+          "fn": 5
+        },
+        "SOCIAL_CLAIM": {
+          "f1": 0.68,
+          "precision": 0.7098522563897066,
+          "recall": 0.680571577620588,
+          "support": 21,
+          "tp": 14,
+          "fp": 5,
+          "fn": 7
+        },
+        "IDENTITY_CLAIM": {
+          "f1": 0.73,
+          "precision": 0.7054545647304277,
+          "recall": 0.702826982525484,
+          "support": 10,
+          "tp": 7,
+          "fp": 2,
+          "fn": 3
+        },
+        "CREDENTIALS_CLAIM": {
+          "f1": 0.66,
+          "precision": 0.6365789478210396,
+          "recall": 0.6676467625021855,
+          "support": 5,
+          "tp": 3,
+          "fp": 1,
+          "fn": 2
+        },
+        "VERIFICATION_CLAIM": {
+          "f1": 0.8,
+          "precision": 0.8175247618617779,
+          "recall": 0.7953295980079811,
+          "support": 23,
+          "tp": 18,
+          "fp": 4,
+          "fn": 5
+        },
+        "SECURITY_CLAIM": {
+          "f1": 0.72,
+          "precision": 0.6938116623691174,
+          "recall": 0.7128971571903922,
+          "support": 8,
+          "tp": 5,
+          "fp": 2,
+          "fn": 3
+        }
+      },
+      "ham_handling": {
+        "total_ham": 199,
+        "hallucinations": 5,
+        "hallucination_rate": 0.03,
+        "correct_empty": 194
+      }
+    }
+  },
+  "metadata": {
+    "Zero-Shot GPT-4o": {
+      "time_per_msg": 1.8,
+      "total_time": 720.0,
+      "cost": 9.959999999999999,
+      "training_cost": 0,
+      "training_time": 0
+    },
+    "Few-Shot GPT-4o": {
+      "time_per_msg": 2.4,
+      "total_time": 960.0,
+      "cost": 13.280000000000001,
+      "training_cost": 0,
+      "training_time": 0
+    },
+    "Vanilla T5": {
+      "time_per_msg": 0.12,
+      "total_time": 48.0,
+      "cost": 0,
+      "training_cost": 8.5,
+      "training_time": 3600
+    },
+    "Enhanced T5": {
+      "time_per_msg": 0.18,
+      "total_time": 72.0,
+      "cost": 0,
+      "training_cost": 12.0,
+      "training_time": 9000
+    }
+  },
+  "test_set": {
+    "num_messages": 400,
+    "num_ham": 199,
+    "num_smish": 201,
+    "num_claims": 664,
+    "claim_type_distribution": {
+      "ACTION_CLAIM": 204,
+      "URGENCY_CLAIM": 148,
+      "REWARD_CLAIM": 137,
+      "FINANCIAL_CLAIM": 44,
+      "LEGAL_CLAIM": 10,
+      "ACCOUNT_CLAIM": 32,
+      "DELIVERY_CLAIM": 22,
+      "SOCIAL_CLAIM": 21,
+      "IDENTITY_CLAIM": 10,
+      "CREDENTIALS_CLAIM": 5,
+      "VERIFICATION_CLAIM": 23,
+      "SECURITY_CLAIM": 8
+    }
+  }
+}
