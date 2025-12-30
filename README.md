@@ -1,8 +1,8 @@
-# SMS Phishing Detection via Claim Extraction
+# SMS Phishing Detection: Multi-Agent Claim Verification System
 
-**A comparative study of Named Entity Recognition approaches for extracting verifiable claims from SMS phishing messages**
+A three-stage pipeline for detecting SMS phishing through claim extraction, parsing, and verification.
 
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-red.svg)](https://pytorch.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -10,43 +10,85 @@
 
 ## Overview
 
-This repository presents a comparative evaluation of **two NER-based approaches** for extracting structured, verifiable claims from SMS phishing messages. The extracted claims serve as atomic units for downstream fact-checking and verification systems.
+This repository implements a claim-based approach to SMS phishing detection through three specialized agents:
 
-**Key Contributions:**
-- Novel claim-phrase extraction task for phishing detection
-- Comparative analysis of entity-first vs. claim-direct approaches
-- Annotated dataset of 2,000 SMS messages (530 original + 438 augmented + 1,032 legitimate)
-- Pre-trained RoBERTa-based models with 78% F1 on claim extraction
+1. **Agent 1: Claim Extraction** - NER-based extraction of verifiable claims from SMS messages
+2. **Agent 2: Claim Parsing** - Semantic parsing of claims into canonical forms with structured slots
+3. **Agent 3: Claim Verification** - Cross-referencing parsed claims against authoritative sources (upcoming)
+
+**Key Features:**
+- End-to-end claim verification pipeline
+- Balanced dataset of 2,000 annotated SMS messages
+- 3,321 parsed claims with canonical forms and slot values
+- Multiple model implementations (RoBERTa for extraction, GPT-4/T5 for parsing)
+- Cost-effective batch processing with OpenAI API
 
 **Dataset Statistics:**
-- **Total Messages:** 2,000 (balanced 51.6% HAM / 48.4% SMISH)
-- **Claim Annotations:** 618 ground truth claims across 8 claim types
-- **Source:** Mendeley SMS Spam Collection + GPT-4o augmentation
+- **Total Messages:** 2,000 (995 HAM / 1,005 SMISH)
+- **Extracted Claims:** 3,324 spans across 12 claim types
+- **Parsed Claims:** 3,321 with canonical forms and slots
+- **Source:** Mendeley SMS Spam Collection + GPT-4 augmentation
 
 ---
 
-## Research Motivation
+## Pipeline Architecture
 
-Traditional SMS phishing detection relies on surface-level features (keywords, URLs, sender patterns), which are easily evaded through obfuscation and adversarial attacks. This work explores **claim-based verification** as a more robust alternative:
-
-1. **Claim Extraction** (this work): Identify atomic, verifiable statements in suspicious SMS
-2. **Claim Verification** (future): Cross-reference claims against authoritative sources
-3. **Risk Assessment** (future): Aggregate verified claims for final phishing determination
-
-**Example:**
 ```
-SMS: "Your Amazon package is delayed. Click here urgently to reschedule delivery."
-
-Extracted Claims:
- IDENTITY_CLAIM: "Amazon" (Verify: Is sender legitimate Amazon?)
- DELIVERY_CLAIM: "package is delayed" (Verify: Do I have an active Amazon order?)
- ACTION_CLAIM: "Click here" (Verify: Is URL Amazon's official domain?)
- URGENCY_CLAIM: "urgently" (Red flag: Artificial time pressure)
+SMS Message
+    ↓
+[Agent 1: Claim Extraction]
+    ↓ Extracts claim spans with types
+[Agent 2: Claim Parsing]
+    ↓ Parses into canonical forms + slots
+[Agent 3: Claim Verification]
+    ↓ Verifies against authoritative sources
+Risk Score
 ```
+
+### Agent 1: Claim Extraction (NER)
+- **Input:** Raw SMS text
+- **Output:** Claim spans with types (ACTION, URGENCY, REWARD, etc.)
+- **Model:** RoBERTa-base fine-tuned on 2,000 messages
+- **Performance:** 78% F1 score
+
+### Agent 2: Claim Parsing (Semantic Parsing)
+- **Input:** Extracted claim spans
+- **Output:** Canonical forms + structured slot values
+- **Models:** GPT-4 (zero-shot) or T5-base (fine-tuned)
+- **Data:** 3,321 parsed claims (2,651 train / 670 test)
+
+### Agent 3: Claim Verification (Upcoming)
+- **Input:** Parsed claims with slots
+- **Output:** Verification results + confidence scores
+- **Methods:** Knowledge base lookups, API queries, LLM reasoning
 
 ---
 
-## Methodology
+## Project Structure
+
+```
+sms-claim-check/
+├── 1_claim_extraction_agent/     # Agent 1: NER-based claim extraction
+│   ├── approach5_pure_ner_improved.ipynb
+│   ├── inference.py
+│   └── evaluation_output/
+├── 2_claim_parsing_agent/        # Agent 2: Semantic parsing
+│   ├── models.py                 # Data structures
+│   ├── schemas.py                # Slot definitions (12 claim types)
+│   ├── parser_llm.py             # GPT-based parser
+│   ├── parser_t5.py              # T5-based parser
+│   ├── label_all_batch.py        # Batch API integration
+│   └── train_t5_parser.py        # Training pipeline
+├── data/
+│   ├── annotations/
+│   │   ├── claim_annotations_2000_reviewed.json      # Agent 1 output
+│   │   ├── claim_parsing_all_2000.json               # Agent 2 output
+│   │   ├── claim_parsing_train_2651.json             # Training data
+│   │   └── claim_parsing_test_670.json               # Test data
+│   └── batch_info/               # OpenAI batch processing metadata
+└── scripts/
+    └── run_parsing_experiment.py # End-to-end evaluation
+```
 
 ### Data Collection & Annotation
 

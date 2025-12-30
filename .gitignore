@@ -34,6 +34,10 @@ wheels/
 # VS Code
 .vscode/
 
+# Documentation (local only)
+2_claim_parsing_agent/*.md
+!2_claim_parsing_agent/README.md
+
 # Data files
 data/raw/*.csv
 data/raw/*.txt
@@ -44,6 +48,12 @@ data/processed/*.conll
 # Keep annotation files for training
 !data/annotations/entity_annotations.json
 !data/annotations/claim_annotations.json
+!data/annotations/claim_annotations_2000_reviewed.json
+!data/annotations/claim_parsing_*.json
+
+# Batch processing (can regenerate)
+data/batch_info/batch_requests.jsonl
+data/batch_info/batch_results_raw.jsonl
 
 # Keep directory structure
 !data/.gitkeep
